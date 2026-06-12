@@ -1,0 +1,22 @@
+(function(){let e=document.createElement(`link`).relList;if(e&&e.supports&&e.supports(`modulepreload`))return;for(let e of document.querySelectorAll(`link[rel="modulepreload"]`))n(e);new MutationObserver(e=>{for(let t of e)if(t.type===`childList`)for(let e of t.addedNodes)e.tagName===`LINK`&&e.rel===`modulepreload`&&n(e)}).observe(document,{childList:!0,subtree:!0});function t(e){let t={};return e.integrity&&(t.integrity=e.integrity),e.referrerPolicy&&(t.referrerPolicy=e.referrerPolicy),e.crossOrigin===`use-credentials`?t.credentials=`include`:e.crossOrigin===`anonymous`?t.credentials=`omit`:t.credentials=`same-origin`,t}function n(e){if(e.ep)return;e.ep=!0;let n=t(e);fetch(e.href,n)}})();var e=class{id;title;description;technologies;repositoryUrl;interfaceType;constructor(e,t,n,r,i,a){this.id=e,this.title=t,this.description=n,this.technologies=r,this.repositoryUrl=i,this.interfaceType=a}},t=class{baseUrl;constructor(e){this.baseUrl=e}async getProjects(){let t=await fetch(`${this.baseUrl}data/projects.json`);if(!t.ok)throw Error(`Failed to fetch projects: ${t.statusText}`);return(await t.json()).map(t=>new e(t.id,t.title,t.description,t.technologies,t.repositoryUrl,t.interfaceType))}},n=class{isSatisfiedBy(e){return!0}},r=class{technology;constructor(e){this.technology=e}isSatisfiedBy(e){return e.technologies.some(e=>e.toLowerCase()===this.technology.toLowerCase())}},i=class{interfaceType;constructor(e){this.interfaceType=e}isSatisfiedBy(e){return e.interfaceType===this.interfaceType}},a=class{projectRepository;constructor(e){this.projectRepository=e}async execute(e=new n){return(await this.projectRepository.getProjects()).filter(t=>e.isSatisfiedBy(t))}},o=class{project;constructor(e){this.project=e}render(){let e=this.project.technologies.map(e=>`<span class="badge">${e}</span>`).join(``);return`
+            <div class="card">
+                <div class="card-header">
+                    <h3>${this.project.title}</h3>
+                    <span class="interface-tag ${this.project.interfaceType.toLowerCase()}">
+                        ${this.project.interfaceType}
+                    </span>
+                </div>
+                <p class="card-description">${this.project.description}</p>
+                <div class="card-techs">
+                    ${e}
+                </div>
+                <div class="card-footer">
+                    <a href="${this.project.repositoryUrl}" target="_blank" class="btn-repo">
+                        Ver Código Fuente 📂
+                    </a>
+                </div>
+            </div>
+        `}};new class{getProjectsUseCase;container=null;filterOptions=[];constructor(e){this.getProjectsUseCase=e}async init(){if(this.container=document.getElementById(`projects-container`),this.container)try{let e=await this.getProjectsUseCase.execute(new n),t=Array.from(new Set(e.map(e=>e.interfaceType))),a=Array.from(new Set(e.flatMap(e=>e.technologies)));this.filterOptions=[{label:`All`,spec:new n},...t.map(e=>({label:e,spec:new i(e)})),...a.map(e=>({label:e,spec:new r(e)}))],this.container.innerHTML=`
+                <div class="filters-container" id="filters-container"></div>
+                <div class="projects-grid" id="projects-grid"></div>
+            `,this.renderFilterButtons(),this.renderProjects(e)}catch{this.renderErrorState()}}renderFilterButtons(){let e=document.getElementById(`filters-container`);e&&this.filterOptions.forEach((t,n)=>{let r=document.createElement(`button`);r.className=`filter-btn ${n===0?`active`:``}`,r.textContent=t.label,r.addEventListener(`click`,async()=>{document.querySelectorAll(`.filter-btn`).forEach(e=>e.classList.remove(`active`)),r.classList.add(`active`),await this.loadFilteredProjects(t.spec)}),e.appendChild(r)})}async loadFilteredProjects(e){let t=document.getElementById(`projects-grid`);if(t){t.innerHTML=`<p class="loading-text">Filtering projects...</p>`;try{let t=await this.getProjectsUseCase.execute(e);this.renderProjects(t)}catch{this.renderErrorState()}}}renderProjects(e){let t=document.getElementById(`projects-grid`);if(t){if(e.length===0){t.innerHTML=`<p class="empty-text">No matching projects found.</p>`;return}t.innerHTML=e.map(e=>new o(e).render()).join(``)}}renderErrorState(){this.container&&(this.container.innerHTML=`<p class="error-text">⚠️ Error loading architectural specifications.</p>`)}}(new a(new t(`/portflio/`))).init();
