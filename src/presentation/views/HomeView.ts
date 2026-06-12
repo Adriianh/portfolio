@@ -3,19 +3,17 @@ import { ProjectCard } from "../components/ProjectCard";
 import { Project } from "../../domain/entities/Project";
 import {
     AllProjectsSpec,
-    TechnologySpec,
+    ProgrammingLanguageSpec,
     InterfaceTypeSpec,
 } from "../../domain/specs/ProjectSpecs";
+import { AndSpec } from "../../domain/specs/AndSpec";
 import type { Specification } from "../../domain/specs/Specification";
-
-interface FilterOptions {
-    label: string;
-    spec: Specification<Project>;
-}
 
 export class HomeView {
     private container: HTMLElement | null = null;
-    private filterOptions: FilterOptions[] = [];
+
+    private currentPlatformSpec: Specification<Project> = new AllProjectsSpec();
+    private currentLanguageSpec: Specification<Project> = new AllProjectsSpec();
 
     constructor(private readonly getProjectsUseCase: GetProjects) {}
 
@@ -28,69 +26,87 @@ export class HomeView {
                 new AllProjectsSpec(),
             );
 
-            const uniqueInterfaces = Array.from(
+            const uniquePlatforms = Array.from(
                 new Set(allProjects.map((p) => p.interfaceType)),
             );
-            const uniqueTechs = Array.from(
-                new Set(allProjects.flatMap((p) => p.technologies)),
+
+            const uniqueLanguages = Array.from(
+                new Set(allProjects.flatMap((p) => p.programmingLanguages)),
             );
 
-            this.filterOptions = [
-                { label: "All", spec: new AllProjectsSpec() },
-                ...uniqueInterfaces.map((type) => ({
-                    label: type,
-                    spec: new InterfaceTypeSpec(type),
-                })),
-                ...uniqueTechs.map((tech) => ({
-                    label: tech,
-                    spec: new TechnologySpec(tech),
-                })),
-            ];
-
             this.container.innerHTML = `
-                <div class="filters-container" id="filters-container"></div>
+                <div class="filters-bar">
+                    <div class="filter-group">
+                        <label for="platform-select">Platform</label>
+                        <select id="platform-select" class="filter-dropdown">
+                            <option value="All">All Platforms</option>
+                            ${uniquePlatforms.map((p) => `<option value="${p}">${p}</option>`).join("")}
+                        </select>
+                    </div>
+
+                    <div class="filter-group">
+                        <label for="language-select">Language</label>
+                        <select id="language-select" class="filter-dropdown">
+                            <option value="All">All Languages</option>
+                            ${uniqueLanguages.map((lang) => `<option value="${lang}">${lang}</option>`).join("")}
+                        </select>
+                    </div>
+                </div>
                 <div class="projects-grid" id="projects-grid"></div>
             `;
 
-            this.renderFilterButtons();
+            this.setupFilterEvents();
             this.renderProjects(allProjects);
         } catch (error) {
             this.renderErrorState();
         }
     }
 
-    private renderFilterButtons(): void {
-        const filtersContainer = document.getElementById("filters-container");
-        if (!filtersContainer) return;
+    private setupFilterEvents(): void {
+        const platformSelect = document.getElementById(
+            "platform-select",
+        ) as HTMLSelectElement;
+        const languageSelect = document.getElementById(
+            "language-select",
+        ) as HTMLSelectElement;
 
-        this.filterOptions.forEach((option, index) => {
-            const button = document.createElement("button");
-            button.className = `filter-btn ${index === 0 ? "active" : ""}`;
-            button.textContent = option.label;
+        if (!platformSelect || !languageSelect) return;
 
-            button.addEventListener("click", async () => {
-                document
-                    .querySelectorAll(".filter-btn")
-                    .forEach((btn) => btn.classList.remove("active"));
-                button.classList.add("active");
+        platformSelect.addEventListener("change", () => {
+            const value = platformSelect.value;
+            this.currentPlatformSpec =
+                value === "All"
+                    ? new AllProjectsSpec()
+                    : new InterfaceTypeSpec(value as Project["interfaceType"]);
 
-                await this.loadFilteredProjects(option.spec);
-            });
+            this.applyCombinedFilters();
+        });
 
-            filtersContainer.appendChild(button);
+        languageSelect.addEventListener("change", () => {
+            const value = languageSelect.value;
+            this.currentLanguageSpec =
+                value === "All"
+                    ? new AllProjectsSpec()
+                    : new ProgrammingLanguageSpec(value);
+
+            this.applyCombinedFilters();
         });
     }
 
-    private async loadFilteredProjects(
-        spec: Specification<Project>,
-    ): Promise<void> {
+    private async applyCombinedFilters(): Promise<void> {
         const gridContainer = document.getElementById("projects-grid");
         if (!gridContainer) return;
 
-        gridContainer.innerHTML = `<p class="loading-text">Filtering projects...</p>`;
+        gridContainer.innerHTML = `<p class="loading-text">Applying structural criteria...</p>`;
+
         try {
-            const filtered = await this.getProjectsUseCase.execute(spec);
-            this.renderProjects(filtered);
+            const combinedSpec = new AndSpec(
+                this.currentPlatformSpec,
+                this.currentLanguageSpec,
+            );
+            const filteredProjects =
+                await this.getProjectsUseCase.execute(combinedSpec);
+            this.renderProjects(filteredProjects);
         } catch (error) {
             this.renderErrorState();
         }
@@ -101,7 +117,7 @@ export class HomeView {
         if (!gridContainer) return;
 
         if (projects.length === 0) {
-            gridContainer.innerHTML = `<p class="empty-text">No matching projects found.</p>`;
+            gridContainer.innerHTML = `<p class="empty-text">No projects match the selected criteria.</p>`;
             return;
         }
 
@@ -111,7 +127,9 @@ export class HomeView {
     }
 
     private renderErrorState(): void {
-        if (!this.container) return;
-        this.container.innerHTML = `<p class="error-text">⚠️ Error loading architectural specifications.</p>`;
+        const gridContainer = document.getElementById("projects-grid");
+        if (gridContainer) {
+            gridContainer.innerHTML = `<p class="error-text">⚠️ Architectural evaluation failed.</p>`;
+        }
     }
 }
