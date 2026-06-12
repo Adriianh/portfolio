@@ -4,7 +4,12 @@ export class Project {
     readonly description: string;
     readonly technologies: string[];
     readonly repositoryUrl: string;
-    readonly interfaceType: "CLI" | "Mobile" | "Web" | "Desktop";
+    readonly interfaceType:
+        | "CLI"
+        | "Mobile"
+        | "Web"
+        | "Desktop"
+        | "Multiplatform";
 
     constructor(
         id: string,
@@ -12,7 +17,7 @@ export class Project {
         description: string,
         technologies: string[],
         repositoryUrl: string,
-        interfaceType: "CLI" | "Mobile" | "Web" | "Desktop",
+        interfaceType: "CLI" | "Mobile" | "Web" | "Desktop" | "Multiplatform",
     ) {
         this.id = id;
         this.title = title;
