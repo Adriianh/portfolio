@@ -2,6 +2,7 @@ export class Project {
     readonly id: string;
     readonly title: string;
     readonly description: string;
+    readonly programmingLanguages: string[];
     readonly technologies: string[];
     readonly repositoryUrl: string;
     readonly interfaceType:
@@ -15,6 +16,7 @@ export class Project {
         id: string,
         title: string,
         description: string,
+        programmingLanguages: string[],
         technologies: string[],
         repositoryUrl: string,
         interfaceType: "CLI" | "Mobile" | "Web" | "Desktop" | "Multiplatform",
@@ -22,6 +24,7 @@ export class Project {
         this.id = id;
         this.title = title;
         this.description = description;
+        this.programmingLanguages = programmingLanguages;
         this.technologies = technologies;
         this.repositoryUrl = repositoryUrl;
         this.interfaceType = interfaceType;
