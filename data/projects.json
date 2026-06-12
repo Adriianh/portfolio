@@ -3,8 +3,10 @@
         "id": "1",
         "title": "Farmacontrol",
         "description": "Pharmacy inventory management system with a user-friendly interface for efficient stock control and sales tracking.",
+        "programmingLanguages": [
+            "C#"
+        ],
         "technologies": [
-            "C#",
             "Avalonia UI",
             "SQLite",
             "Entity Framework Core",
@@ -17,8 +19,10 @@
         "id": "2",
         "title": "Melo",
         "description": "A music player app built with Kotlin Multiplatform, offering a seamless experience across Desktop, Android, and iOS platforms with a clean and intuitive interface.",
+        "programmingLanguages": [
+            "Kotlin"
+        ],
         "technologies": [
-            "Kotlin",
             "Jetpack Compose",
             "TamboUI"
         ],
@@ -29,8 +33,10 @@
         "id": "3",
         "title": "Clean Architecture Portfolio",
         "description": "A portfolio website showcasing projects and skills, built with a clean architecture approach for maintainability and scalability.",
+        "programmingLanguages": [
+            "TypeScript"
+        ],
         "technologies": [
-            "TypeScript",
             "Vite",
             "HTML/CSS"
         ],
