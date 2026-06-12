@@ -1,0 +1,157 @@
+:root {
+    --bg-main: #121316;
+    --bg-card: #1c1e22;
+    --text-primary: #e3e6eb;
+    --text-secondary: #9aa0a6;
+    --accent: #00bcd4;
+    --accent-hover: #00acc1;
+    --tag-cli: #4caf50;
+    --tag-desktop: #2196f3;
+    --tag-web: #ff9800;
+    --tag-multiplatform: #ffc107;
+}
+
+body {
+    background-color: var(--bg-main);
+    color: var(--text-primary);
+    font-family:
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Roboto,
+        sans-serif;
+    margin: 0;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.portfolio-header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.portfolio-header h1 {
+    color: var(--accent);
+    margin-bottom: 0.5rem;
+}
+
+.portfolio-header p {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+}
+
+.portfolio-main h2 {
+    border-bottom: 1px solid #2d3139;
+    padding-bottom: 0.5rem;
+    margin-bottom: 2rem;
+}
+
+.portfolio-footer {
+    text-align: center;
+    margin-top: auto;
+    padding-top: 2rem;
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+}
+
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2rem;
+}
+
+.card {
+    background-color: var(--bg-card);
+    border: 1px solid #2d3139;
+    border-radius: 8px;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition:
+        transform 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.card:hover {
+    transform: translateY(-4px);
+    border-color: var(--accent);
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.card-header h3 {
+    margin: 0;
+    font-size: 1.3rem;
+}
+
+.interface-tag {
+    font-size: 0.75rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+}
+.interface-tag.cli {
+    background: rgba(76, 175, 80, 0.15);
+    color: var(--tag-cli);
+}
+.interface-tag.desktop {
+    background: rgba(33, 150, 243, 0.15);
+    color: var(--tag-desktop);
+}
+.interface-tag.web {
+    background: rgba(255, 152, 0, 0.15);
+    color: var(--tag-web);
+}
+.interface-tag.multiplatform {
+    background: rgba(255, 193, 7, 0.15);
+    color: var(--tag-multiplatform);
+}
+
+.card-description {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin-bottom: 1.5rem;
+}
+
+.card-techs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.badge {
+    background-color: #25282e;
+    color: var(--text-primary);
+    font-size: 0.8rem;
+    padding: 0.3rem 0.6rem;
+    border-radius: 4px;
+    border: 1px solid #363b45;
+}
+
+.btn-repo {
+    display: block;
+    text-align: center;
+    background-color: #00838f;
+    color: white;
+    text-decoration: none;
+    padding: 0.7rem;
+    border-radius: 6px;
+    font-weight: 500;
+    transition: background-color 0.2s;
+}
+
+.btn-repo:hover {
+    background-color: #006064;
+}
