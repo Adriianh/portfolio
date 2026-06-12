@@ -1,0 +1,40 @@
+[
+    {
+        "id": "1",
+        "title": "Farmacontrol",
+        "description": "Pharmacy inventory management system with a user-friendly interface for efficient stock control and sales tracking.",
+        "technologies": [
+            "C#",
+            "Avalonia UI",
+            "SQLite",
+            "Entity Framework Core",
+            "BCrypt.Net-Next"
+        ],
+        "repositoryUrl": "https://github.com/adriianh/Farmacontrol",
+        "interfaceType": "Desktop"
+    },
+    {
+        "id": "2",
+        "title": "Melo",
+        "description": "A music player app built with Kotlin Multiplatform, offering a seamless experience across Desktop, Android, and iOS platforms with a clean and intuitive interface.",
+        "technologies": [
+            "Kotlin",
+            "Jetpack Compose",
+            "TamboUI"
+        ],
+        "repositoryUrl": "https://github.com/adriianh/Melo",
+        "interfaceType": "Multiplatform"
+    },
+    {
+        "id": "3",
+        "title": "Clean Architecture Portfolio",
+        "description": "A portfolio website showcasing projects and skills, built with a clean architecture approach for maintainability and scalability.",
+        "technologies": [
+            "TypeScript",
+            "Vite",
+            "HTML/CSS"
+        ],
+        "repositoryUrl": "#",
+        "interfaceType": "Web"
+    }
+]
