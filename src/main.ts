@@ -3,12 +3,10 @@ import { GetProjects } from "./domain/use-cases/GetProjects";
 import { HomeView } from "./presentation/views/HomeView";
 import "./style.css";
 
-const projectRepository = new ProjectRepositoryImpl();
+const baseUrl = import.meta.env.BASE_URL;
 
+const projectRepository = new ProjectRepositoryImpl(baseUrl);
 const getProjectsUseCase = new GetProjects(projectRepository);
 
 const homeView = new HomeView(getProjectsUseCase);
-
-document.addEventListener("DOMContentLoaded", () => {
-    homeView.init();
-});
+homeView.init();
