@@ -2,8 +2,10 @@ import { Project } from "../../domain/entities/Project";
 import type { ProjectRepository } from "../../domain/repositories/ProjectRepository";
 
 export class ProjectRepositoryImpl implements ProjectRepository {
+    constructor(private readonly baseUrl: string) {}
+
     async getProjects(): Promise<Project[]> {
-        const response = await fetch("/data/projects.json");
+        const response = await fetch(`${this.baseUrl}data/projects.json`);
 
         if (!response.ok) {
             throw new Error(`Failed to fetch projects: ${response.statusText}`);
