@@ -1,5 +1,5 @@
 import { Project } from "../../domain/entities/Project";
-import { type ProjectRepository } from "../../domain/repositories/ProjectRepository";
+import type { ProjectRepository } from "../../domain/repositories/ProjectRepository";
 
 export class ProjectRepositoryImpl implements ProjectRepository {
     async getProjects(): Promise<Project[]> {

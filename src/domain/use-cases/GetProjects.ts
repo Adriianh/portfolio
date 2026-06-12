@@ -1,5 +1,5 @@
 import { Project } from "../entities/Project";
-import { type ProjectRepository } from "../repositories/ProjectRepository";
+import type { ProjectRepository } from "../repositories/ProjectRepository";
 
 export class GetProjects {
     constructor(private readonly projectRepository: ProjectRepository) {}
