@@ -1,7 +1,12 @@
 import { describe, it, expect } from "vitest";
 import { Project } from "../entities/Project";
-import { AllProjectsSpec, InterfaceTypeSpec, ProgrammingLanguageSpec } from "./ProjectSpecs";
+import {
+    AllProjectsSpec,
+    InterfaceTypeSpec,
+    ProgrammingLanguageSpec,
+} from "./ProjectSpecs";
 import { AndSpec } from "./AndSpec";
+import { OrSpec } from "./OrSpec";
 
 describe("Domain Architecture: Specification Pattern Unit Tests", () => {
     const mockWebProject = new Project(
@@ -11,7 +16,7 @@ describe("Domain Architecture: Specification Pattern Unit Tests", () => {
         ["TypeScript", "HTML"],
         ["Vite"],
         "https://github.com",
-        "Web"
+        "Web",
     );
 
     const mockDesktopProject = new Project(
@@ -21,7 +26,7 @@ describe("Domain Architecture: Specification Pattern Unit Tests", () => {
         ["C#"],
         ["Avalonia UI"],
         "https://github.com",
-        "Desktop"
+        "Desktop",
     );
 
     describe("AllProjectsSpec", () => {
@@ -57,21 +62,45 @@ describe("Domain Architecture: Specification Pattern Unit Tests", () => {
         it("should only satisfy when BOTH specifications are met", () => {
             const isWebSpec = new InterfaceTypeSpec("Web");
             const isTypeScriptSpec = new ProgrammingLanguageSpec("TypeScript");
-            
+
             const combinedSpec = new AndSpec(isWebSpec, isTypeScriptSpec);
 
             expect(combinedSpec.isSatisfiedBy(mockWebProject)).toBe(true);
-            
+
             expect(combinedSpec.isSatisfiedBy(mockDesktopProject)).toBe(false);
         });
 
         it("should fail if one of the specifications evaluates to false", () => {
             const isWebSpec = new InterfaceTypeSpec("Web");
             const isCSharpeSpec = new ProgrammingLanguageSpec("C#");
-            
+
             const faultyCombinedSpec = new AndSpec(isWebSpec, isCSharpeSpec);
 
-            expect(faultyCombinedSpec.isSatisfiedBy(mockWebProject)).toBe(false);
+            expect(faultyCombinedSpec.isSatisfiedBy(mockWebProject)).toBe(
+                false,
+            );
+        });
+    });
+
+    describe("Composite OrSpec", () => {
+        it("should satisfy when AT LEAST ONE specification is met", () => {
+            const isWebSpec = new InterfaceTypeSpec("Web");
+            const isCSharpSpec = new ProgrammingLanguageSpec("C#");
+
+            const combinedOrSpec = new OrSpec(isWebSpec, isCSharpSpec);
+
+            expect(combinedOrSpec.isSatisfiedBy(mockWebProject)).toBe(true);
+
+            expect(combinedOrSpec.isSatisfiedBy(mockDesktopProject)).toBe(true);
+        });
+
+        it("should fail if both specifications evaluate to false", () => {
+            const isDesktopSpec = new InterfaceTypeSpec("Desktop");
+            const isKotlinSpec = new ProgrammingLanguageSpec("Kotlin");
+
+            const combinedOrSpec = new OrSpec(isDesktopSpec, isKotlinSpec);
+
+            expect(combinedOrSpec.isSatisfiedBy(mockWebProject)).toBe(false);
         });
     });
 });
