@@ -17,6 +17,9 @@ export class HomeView {
     private currentLanguageSpec: Specification<Project> = new AllProjectsSpec();
     private currentSearchSpec: Specification<Project> = new AllProjectsSpec();
 
+    private allProjects: Project[] = [];
+    private cardEntries: { project: Project; element: HTMLElement }[] = [];
+
     constructor(private readonly getProjectsUseCase: GetProjects) {}
 
     async init(): Promise<void> {
@@ -24,16 +27,18 @@ export class HomeView {
         if (!this.container) return;
 
         try {
-            const allProjects = await this.getProjectsUseCase.execute(
+            this.allProjects = await this.getProjectsUseCase.execute(
                 new AllProjectsSpec(),
             );
 
             const uniquePlatforms = Array.from(
-                new Set(allProjects.map((p) => p.interfaceType)),
+                new Set(this.allProjects.map((p) => p.interfaceType)),
             );
 
             const uniqueLanguages = Array.from(
-                new Set(allProjects.flatMap((p) => p.programmingLanguages)),
+                new Set(
+                    this.allProjects.flatMap((p) => p.programmingLanguages),
+                ),
             );
 
             this.container.innerHTML = `
@@ -66,8 +71,22 @@ export class HomeView {
                 <div class="projects-grid" id="projects-grid"></div>
             `;
 
+            const grid = document.getElementById("projects-grid");
+            this.cardEntries = this.allProjects.map((project) => {
+                const card = new ProjectCard(project);
+                const cardString = card.render();
+
+                const tempTemplate = document.createElement("div");
+                tempTemplate.innerHTML = cardString.trim();
+
+                const cardElement =
+                    tempTemplate.firstElementChild as HTMLElement;
+
+                grid?.appendChild(cardElement);
+                return { project, element: cardElement };
+            });
+
             this.setupFilterEvents();
-            this.renderProjects(allProjects);
         } catch (error) {
             this.renderErrorState();
         }
@@ -113,37 +132,52 @@ export class HomeView {
         const gridContainer = document.getElementById("projects-grid");
         if (!gridContainer) return;
 
+        let visibleCardsCount = 0;
+
         try {
             const combinedSpec = new AndSpec(
                 this.currentSearchSpec,
                 new AndSpec(this.currentPlatformSpec, this.currentLanguageSpec),
             );
-            const filteredProjects =
-                await this.getProjectsUseCase.execute(combinedSpec);
-            this.renderProjects(filteredProjects);
+
+            this.cardEntries.forEach(({ project, element }) => {
+                if (combinedSpec.isSatisfiedBy(project)) {
+                    element.classList.remove("hidden");
+                    visibleCardsCount++;
+                } else {
+                    element.classList.add("hidden");
+                }
+            });
+
+            this.manageEmptyState(visibleCardsCount, gridContainer);
         } catch (error) {
             this.renderErrorState();
         }
     }
 
-    private renderProjects(projects: Project[]): void {
-        const gridContainer = document.getElementById("projects-grid");
-        if (!gridContainer) return;
+    private manageEmptyState(
+        visibleCardsCount: number,
+        container: HTMLElement,
+    ): void {
+        const existingEmptyState = document.getElementById("empty-state");
 
-        if (projects.length === 0) {
-            gridContainer.innerHTML = `
-                <div class="empty-state-container">
-                    <span class="empty-state-icon">🔍</span>
-                    <h3>No se encontraron proyectos</h3>
-                    <p>Prueba cambiando el término de búsqueda o relajando los selectores de plataforma y lenguaje.</p>
-                </div>
-            `;
-            return;
+        if (visibleCardsCount === 0) {
+            if (!existingEmptyState) {
+                const emptyStateDiv = document.createElement("div");
+
+                emptyStateDiv.id = "empty-state";
+                emptyStateDiv.className = "empty-state-container";
+                emptyStateDiv.innerHTML = `
+                <span class="empty-state-icon">🔍</span>
+                <h3>No se encontraron proyectos</h3>
+                <p>Prueba cambiando el término de búsqueda o relajando los selectores de plataforma y lenguaje.</p>
+                `;
+
+                container.appendChild(emptyStateDiv);
+            }
+        } else {
+            existingEmptyState?.remove();
         }
-
-        gridContainer.innerHTML = projects
-            .map((project) => new ProjectCard(project).render())
-            .join("");
     }
 
     private renderErrorState(): void {

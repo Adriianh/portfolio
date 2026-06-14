@@ -88,6 +88,10 @@ body {
     animation: cardFadeIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
+.card.hidden {
+    display: none !important;
+}
+
 .card:hover {
     transform: translateY(-4px);
     border-color: var(--accent);
