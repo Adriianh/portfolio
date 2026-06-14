@@ -4,6 +4,7 @@ import {
     AllProjectsSpec,
     InterfaceTypeSpec,
     ProgrammingLanguageSpec,
+    SearchTextSpec,
 } from "./ProjectSpecs";
 import { AndSpec } from "./AndSpec";
 import { OrSpec } from "./OrSpec";
@@ -55,6 +56,28 @@ describe("Domain Architecture: Specification Pattern Unit Tests", () => {
         it("should evaluate case-insensitively for safety", () => {
             const spec = new ProgrammingLanguageSpec("typescript");
             expect(spec.isSatisfiedBy(mockWebProject)).toBe(true);
+        });
+    });
+
+    describe("SearchTextSpec", () => {
+        it("should return true if query is empty or whitespace", () => {
+            const spec = new SearchTextSpec("   ");
+            expect(spec.isSatisfiedBy(mockWebProject)).toBe(true);
+        });
+
+        it("should satisfy if query matches project title case-insensitively", () => {
+            const spec = new SearchTextSpec("FRONTEND");
+            expect(spec.isSatisfiedBy(mockWebProject)).toBe(true);
+        });
+
+        it("should satisfy if query matches project description", () => {
+            const spec = new SearchTextSpec("web application");
+            expect(spec.isSatisfiedBy(mockWebProject)).toBe(true);
+        });
+
+        it("should fail if query does not match title nor description", () => {
+            const spec = new SearchTextSpec("Farmacia");
+            expect(spec.isSatisfiedBy(mockWebProject)).toBe(false);
         });
     });
 

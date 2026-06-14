@@ -34,3 +34,18 @@ export class InterfaceTypeSpec implements Specification<Project> {
         return candidate.interfaceType === this.interfaceType;
     }
 }
+
+export class SearchTextSpec implements Specification<Project> {
+    constructor(private readonly query: string) {}
+
+    isSatisfiedBy(candidate: Project): boolean {
+        if (!this.query || this.query.trim() == "") return true;
+
+        const clearQuery = this.query.toLowerCase().trim();
+
+        return (
+            candidate.title.toLowerCase().includes(clearQuery) ||
+            candidate.description.toLowerCase().includes(clearQuery)
+        );
+    }
+}
