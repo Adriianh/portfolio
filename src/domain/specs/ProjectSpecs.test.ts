@@ -18,6 +18,9 @@ describe("Domain Architecture: Specification Pattern Unit Tests", () => {
         ["Vite"],
         "https://github.com",
         "Web",
+        "Ready",
+        ["User authentication", "Responsive design"],
+        "Integrating third-party APIs",
     );
 
     const mockDesktopProject = new Project(
@@ -28,6 +31,9 @@ describe("Domain Architecture: Specification Pattern Unit Tests", () => {
         ["Avalonia UI"],
         "https://github.com",
         "Desktop",
+        "In Progress",
+        ["Cross-platform support", "Offline functionality"],
+        "Ensuring consistent UI across platforms",
     );
 
     describe("AllProjectsSpec", () => {
@@ -64,7 +70,7 @@ describe("Domain Architecture: Specification Pattern Unit Tests", () => {
             const spec = new SearchTextSpec("   ");
             expect(spec.isSatisfiedBy(mockWebProject)).toBe(true);
         });
-
+        /* Obliga al contenedor a ocupar todo el ancho del grid */
         it("should satisfy if query matches project title case-insensitively", () => {
             const spec = new SearchTextSpec("FRONTEND");
             expect(spec.isSatisfiedBy(mockWebProject)).toBe(true);
