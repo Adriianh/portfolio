@@ -42,24 +42,30 @@ nav {
     margin-right: 2px;
 }
 
-.toggle-btn {
-    background: none;
+.theme-switch {
+    position: relative;
+    width: 44px;
+    height: 24px;
+    border-radius: 12px;
     border: none;
     cursor: pointer;
-    padding: 4px;
-    border-radius: 6px;
-    transition: background 0.2s ease;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.toggle-btn:hover {
     background: var(--bg-card);
+    border: 0.5px solid var(--border);
+    transition: background 0.2s ease;
+    padding: 0;
 }
 
-.toggle-btn svg {
-    width: 22px;
-    height: 22px;
-    display: block;
+.theme-switch-thumb {
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: var(--accent);
+    transition: transform 0.2s ease;
+}
+
+.theme-switch.light .theme-switch-thumb {
+    transform: translateX(20px);
 }
