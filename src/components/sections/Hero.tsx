@@ -1,4 +1,5 @@
 import { useTypingEffect } from "../../hooks/useTypingEffect";
+import photo from "../../assets/photo.png";
 import "../../styles/hero.css";
 
 export function Hero() {
@@ -27,7 +28,7 @@ export function Hero() {
             </div>
             <div className="hero-visual">
                 <div className="dot-grid">
-                    <img src="../../assets/photo.png" alt="Adrián Fúnez" />
+                    <img src={photo} alt="Adrián Fúnez" />
                 </div>
             </div>
         </section>
