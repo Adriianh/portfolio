@@ -1,0 +1,24 @@
+.ticker {
+    border-top: 0.5px solid var(--border);
+    border-bottom: 0.5px solid var(--border);
+    background: rgba(167, 139, 250, 0.05);
+    overflow: hidden;
+    padding: 1rem 0;
+    font-size: 0.9rem;
+    color: var(--muted);
+    font-family: var(--font-mono);
+}
+.ticker-track {
+    display: flex;
+    white-space: nowrap;
+    width: fit-content;
+    animation: ticker 25s linear infinite;
+}
+@keyframes ticker {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(-50%);
+    }
+}
