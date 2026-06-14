@@ -16,10 +16,21 @@ export class ProjectModal {
                         <p>${this.project.description}</p>
                     </div>
                     <div class="modal-tech-section">
-                        <h4>Tecnologías utilizadas</h4>
-                        <div class="modal-tags">
-                            ${this.project.programmingLanguages.map((lang) => `<span class="modal-tag">${lang}</span>`).join("")}
+                        <h4>Stack Principal</h4>
+                        <div class="modal-tags" style="margin-bottom: 1rem;">
+                            ${this.project.programmingLanguages.map((lang) => `<span class="modal-tag" style="color: #cba6f7;">${lang}</span>`).join("")}
                         </div>
+                        
+                        ${
+                            (this.project as any).technologies
+                                ? `
+                            <h4>Tecnologías y Frameworks</h4>
+                            <div class="modal-tags">
+                                ${(this.project as any).technologies.map((tech: string) => `<span class="modal-tag">${tech}</span>`).join("")}
+                            </div>
+                        `
+                                : ""
+                        }
                     </div>
                 </div>
             </div>
