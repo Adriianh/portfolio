@@ -172,7 +172,7 @@ export class HomeView {
                 emptyStateDiv.id = "empty-state";
                 emptyStateDiv.className = "empty-state-container";
                 emptyStateDiv.innerHTML = `
-                <span class="empty-state-icon">🔍</span>
+                <span class="empty-state-icon">#</span>
                 <h3>No se encontraron proyectos</h3>
                 <p>Prueba cambiando el término de búsqueda o relajando los selectores de plataforma y lenguaje.</p>
                 `;
@@ -187,7 +187,7 @@ export class HomeView {
     private renderErrorState(): void {
         const gridContainer = document.getElementById("projects-grid");
         if (gridContainer) {
-            gridContainer.innerHTML = `<p class="error-text">⚠️ Architectural evaluation failed.</p>`;
+            gridContainer.innerHTML = `<p class="error-text">Architectural evaluation failed.</p>`;
         }
     }
 

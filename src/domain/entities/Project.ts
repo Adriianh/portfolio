@@ -15,16 +15,5 @@ export class Project {
         public readonly status: string,
         public readonly features: string[],
         public readonly technicalChallenge: string,
-    ) {
-        this.id = id;
-        this.title = title;
-        this.description = description;
-        this.programmingLanguages = programmingLanguages;
-        this.technologies = technologies;
-        this.repositoryUrl = repositoryUrl;
-        this.interfaceType = interfaceType;
-        this.status = status;
-        this.features = features;
-        this.technicalChallenge = technicalChallenge;
-    }
+    ) {}
 }

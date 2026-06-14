@@ -22,7 +22,7 @@ export class ProjectCard {
                 </div>
                 <div class="card-footer">
                     <a href="${this.project.repositoryUrl}" target="_blank" class="btn-repo">
-                        Ver Código Fuente 📂
+                        Ver Código Fuente
                     </a>
                 </div>
             </div>

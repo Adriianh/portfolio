@@ -59,7 +59,7 @@ export class ProjectModal {
                                 ? `
                             <div style="margin-top: 2rem; text-align: right;">
                                 <a href="${this.project.repositoryUrl}" target="_blank" rel="noopener noreferrer" class="btn-repo" style="display: inline-block; padding: 0.6rem 1.5rem; background: #cba6f7; color: #11111b; font-weight: 600; text-decoration: none; border-radius: 6px;">
-                                    View Source Code 🖥️
+                                    View Source Code
                                 </a>
                             </div>
                         `
