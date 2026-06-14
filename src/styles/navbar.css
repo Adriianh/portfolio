@@ -1,0 +1,65 @@
+nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 56px;
+    padding: 0 2rem;
+    background: rgba(15, 14, 23, 0.85);
+    backdrop-filter: blur(8px);
+    border-bottom: 0.5px solid var(--border);
+}
+
+[data-theme="light"] nav {
+    background: rgba(250, 250, 250, 0.85);
+}
+
+.logo {
+    font-weight: 800;
+    font-size: 1.2rem;
+    color: var(--accent);
+}
+
+.nav-links {
+    display: flex;
+    gap: 2rem;
+}
+
+.nav-links a {
+    color: var(--muted);
+    transition: color 0.2s ease;
+}
+
+.nav-links a:hover {
+    color: var(--accent);
+}
+
+.nav-links a::before {
+    content: "#";
+    color: var(--accent);
+    margin-right: 2px;
+}
+
+.toggle-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+    border-radius: 6px;
+    transition: background 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.toggle-btn:hover {
+    background: var(--bg-card);
+}
+
+.toggle-btn svg {
+    width: 22px;
+    height: 22px;
+    display: block;
+}
