@@ -6,9 +6,42 @@ import { InterfaceTypeSpec } from "../specs/ProjectSpecs";
 
 describe("Application Layer: GetProjects Use Case", () => {
     const mockProjects: Project[] = [
-        new Project("1", "P1", "Desc", ["TypeScript"], ["Vite"], "url", "Web"),
-        new Project("2", "P2", "Desc", ["C#"], ["Avalonia"], "url", "Desktop"),
-        new Project("3", "P3", "Desc", ["Kotlin"], ["Compose"], "url", "Web"),
+        new Project(
+            "1",
+            "P1",
+            "Desc",
+            ["TypeScript"],
+            ["Vite"],
+            "url",
+            "Web",
+            "In Development",
+            ["Feature1"],
+            "Challenge1",
+        ),
+        new Project(
+            "2",
+            "P2",
+            "Desc",
+            ["C#"],
+            ["Avalonia"],
+            "url",
+            "Desktop",
+            "Ready",
+            ["Feature2"],
+            "Challenge2",
+        ),
+        new Project(
+            "3",
+            "P3",
+            "Desc",
+            ["Kotlin"],
+            ["Compose"],
+            "url",
+            "Web",
+            "In Development",
+            ["Feature3"],
+            "Challenge3",
+        ),
     ];
 
     it("should fetch all projects from repository and filter them using the provided specification", async () => {
