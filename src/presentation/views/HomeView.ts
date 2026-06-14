@@ -113,8 +113,6 @@ export class HomeView {
         const gridContainer = document.getElementById("projects-grid");
         if (!gridContainer) return;
 
-        gridContainer.innerHTML = `<p class="loading-text">Applying structural criteria...</p>`;
-
         try {
             const combinedSpec = new AndSpec(
                 this.currentSearchSpec,
@@ -133,7 +131,13 @@ export class HomeView {
         if (!gridContainer) return;
 
         if (projects.length === 0) {
-            gridContainer.innerHTML = `<p class="empty-text">No projects match the selected criteria.</p>`;
+            gridContainer.innerHTML = `
+                <div class="empty-state-container">
+                    <span class="empty-state-icon">🔍</span>
+                    <h3>No se encontraron proyectos</h3>
+                    <p>Prueba cambiando el término de búsqueda o relajando los selectores de plataforma y lenguaje.</p>
+                </div>
+            `;
             return;
         }
 

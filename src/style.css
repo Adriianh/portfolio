@@ -63,6 +63,17 @@ body {
     gap: 2rem;
 }
 
+@keyframes cardFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 .card {
     background-color: var(--bg-card);
     border: 1px solid #2d3139;
@@ -74,6 +85,7 @@ body {
     transition:
         transform 0.2s ease,
         border-color 0.2s ease;
+    animation: cardFadeIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 .card:hover {
@@ -285,4 +297,37 @@ body {
 
 .form-input:focus {
     border-color: #cba6f7;
+}
+
+.empty-state-container {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 4rem 2rem;
+    background-color: #181825;
+    border: 2px dashed #313244;
+    border-radius: 12px;
+    max-width: 500px;
+    margin: 2rem auto;
+    animation: cardFadeIn 0.3s ease-out forwards;
+}
+
+.empty-state-icon {
+    font-size: 3.5rem;
+    display: block;
+    margin-bottom: 1rem;
+    filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.2));
+}
+
+.empty-state-container h3 {
+    color: var(--accent);
+    margin: 0 0 0.5rem 0;
+    font-size: 1.4rem;
+    font-weight: 600;
+}
+
+.empty-state-container p {
+    color: var(--text-secondary);
+    margin: 0;
+    font-size: 0.95rem;
+    line-height: 1.6;
 }
