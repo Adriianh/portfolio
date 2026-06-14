@@ -1,5 +1,6 @@
 import { GetProjects } from "../../domain/use-cases/GetProjects";
 import { ProjectCard } from "../components/ProjectCard";
+import { ProjectModal } from "../components/ProjectModal";
 import { Project } from "../../domain/entities/Project";
 import {
     AllProjectsSpec,
@@ -81,6 +82,9 @@ export class HomeView {
 
                 const cardElement =
                     tempTemplate.firstElementChild as HTMLElement;
+                cardElement.addEventListener("click", () =>
+                    this.openProjectModal(project),
+                );
 
                 grid?.appendChild(cardElement);
                 return { project, element: cardElement };
@@ -185,5 +189,32 @@ export class HomeView {
         if (gridContainer) {
             gridContainer.innerHTML = `<p class="error-text">⚠️ Architectural evaluation failed.</p>`;
         }
+    }
+
+    private openProjectModal(project: Project): void {
+        const modalComponent = new ProjectModal(project);
+        const modalHtml = modalComponent.render();
+
+        const tempTemplate = document.createElement("div");
+        tempTemplate.innerHTML = modalHtml.trim();
+        const overlay = tempTemplate.firstElementChild as HTMLElement;
+
+        document.body.appendChild(overlay);
+        document.body.style.overflow = "hidden";
+
+        const closeModal = () => {
+            overlay.remove();
+            document.body.style.overflow = "";
+        };
+
+        overlay
+            .querySelector("#close-modal-btn")
+            ?.addEventListener("click", closeModal);
+
+        overlay.addEventListener("click", (e) => {
+            if (e.target === overlay) {
+                closeModal();
+            }
+        });
     }
 }
