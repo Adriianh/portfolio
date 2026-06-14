@@ -23,6 +23,9 @@ export class ProjectRepositoryImpl implements ProjectRepository {
                     item.technologies || [],
                     item.repositoryUrl,
                     item.interfaceType,
+                    (item.status = "In Development"),
+                    item.features || [],
+                    item.technicalChallenge || "",
                 ),
         );
     }

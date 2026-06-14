@@ -1,25 +1,20 @@
 export class Project {
-    readonly id: string;
-    readonly title: string;
-    readonly description: string;
-    readonly programmingLanguages: string[];
-    readonly technologies: string[];
-    readonly repositoryUrl: string;
-    readonly interfaceType:
-        | "CLI"
-        | "Mobile"
-        | "Web"
-        | "Desktop"
-        | "Multiplatform";
-
     constructor(
-        id: string,
-        title: string,
-        description: string,
-        programmingLanguages: string[],
-        technologies: string[],
-        repositoryUrl: string,
-        interfaceType: "CLI" | "Mobile" | "Web" | "Desktop" | "Multiplatform",
+        public readonly id: string,
+        public readonly title: string,
+        public readonly description: string,
+        public readonly programmingLanguages: string[],
+        public readonly technologies: string[],
+        public readonly repositoryUrl: string,
+        public readonly interfaceType:
+            | "CLI"
+            | "Mobile"
+            | "Web"
+            | "Desktop"
+            | "Multiplatform",
+        public readonly status: string,
+        public readonly features: string[],
+        public readonly technicalChallenge: string,
     ) {
         this.id = id;
         this.title = title;
@@ -28,5 +23,8 @@ export class Project {
         this.technologies = technologies;
         this.repositoryUrl = repositoryUrl;
         this.interfaceType = interfaceType;
+        this.status = status;
+        this.features = features;
+        this.technicalChallenge = technicalChallenge;
     }
 }

@@ -2,45 +2,75 @@
     {
         "id": "1",
         "title": "Farmacontrol",
-        "description": "Pharmacy inventory management system with a user-friendly interface for efficient stock control and sales tracking.",
+        "description": "A domain-driven pharmacy management and Point of Sale (POS) system designed to handle complex pharmaceutical operations, batch-tracked inventories, and rule-based user workflows.",
         "programmingLanguages": [
             "C#"
         ],
         "technologies": [
             "Avalonia UI",
-            "SQLite",
             "Entity Framework Core",
+            "SQLite",
             "BCrypt.Net-Next"
         ],
         "repositoryUrl": "https://github.com/adriianh/Farmacontrol",
-        "interfaceType": "Desktop"
+        "interfaceType": "Desktop",
+        "status": "Production Ready",
+        "features": [
+            "Polymorphic product architecture handling specific domain logic for Medicines (prescriptions/controlled traits), Supplements, Cosmetics, and Supplies.",
+            "Batch-based inventory tracking that automatically drains stock from lots closest to their expiration date.",
+            "Automated alert evaluation engine driven by polymorphic interfaces (IAlertable/IExpirable) for low-stock and near-expiration status checks.",
+            "Comprehensive POS module with custom discount/tax calculations, prescription cross-referencing, and transaction voiding with stock replenishment.",
+            "Role-based access control (RBAC) managing dynamic menu configurations and allowed administrative actions via object-oriented encapsulation."
+        ],
+        "technicalChallenge": "Designing an atomic inventory reduction algorithm that correctly sequences lot deductions by expiration date while handling data consistency, precision rounding for multi-item sales, and state rollback upon transaction voiding."
     },
     {
         "id": "2",
         "title": "Melo",
-        "description": "A music player app built with Kotlin Multiplatform, offering a seamless experience across Desktop, Android, and iOS platforms with a clean and intuitive interface.",
+        "description": "A high-performance, lightweight audio player featuring a dual-experience workflow with an interactive TUI, an immediate CLI, and a background processing daemon.",
         "programmingLanguages": [
-            "Kotlin"
+            "Kotlin",
+            "Java"
         ],
         "technologies": [
-            "Jetpack Compose",
-            "TamboUI"
+            "GraalVM Native Image",
+            "yt-dlp",
+            "ffmpeg",
+            "TamboUI",
+            "Gradle"
         ],
-        "repositoryUrl": "https://github.com/adriianh/Melo",
-        "interfaceType": "Multiplatform"
+        "repositoryUrl": "https://github.com/Adriianh/Melo",
+        "interfaceType": "Multiplatform",
+        "status": "In Development",
+        "features": [
+            "Dual-operational interface providing a rich, keyboard-driven Terminal User Interface (TUI) alongside a lightning-fast CLI for instant playback control.",
+            "Persistent background processing managed via a lightweight daemon optimized for ultra-low CPU and memory utilization.",
+            "Asynchronous media streaming pipeline integration utilizing optimized dependencies via yt-dlp and ffmpeg for audio streaming.",
+            "GraalVM Native Image compilation producing standalone executable binaries with instantaneous startup times."
+        ],
+        "technicalChallenge": "Decoupling the interactive keyboard-driven UI state from the asynchronous streaming pipelines of the background daemon, ensuring zero-latency terminal rendering updates and synchronized audio playback states."
     },
     {
         "id": "3",
         "title": "Clean Architecture Portfolio",
-        "description": "A portfolio website showcasing projects and skills, built with a clean architecture approach for maintainability and scalability.",
+        "description": "A zero-framework, highly optimized frontend portfolio built to showcase pure software architecture principles, design patterns, and complete separation of concerns.",
         "programmingLanguages": [
             "TypeScript"
         ],
         "technologies": [
             "Vite",
+            "Vitest",
             "HTML/CSS"
         ],
-        "repositoryUrl": "#",
-        "interfaceType": "Web"
+        "repositoryUrl": "https://github.com/adriianh/portfolio",
+        "interfaceType": "Web",
+        "status": "Completed",
+        "features": [
+            "Strict implementation of the Specification Pattern (And, Or, Not specs) to power combinatorial real-time data filtering pipelines.",
+            "Absolute decoupling between business rule declarations (Domain) and the presentation layers responsible for DOM rendering.",
+            "High-performance responsive interface with custom CSS variables tailored for precise dark-mode design implementations.",
+            "Full automated unit testing suite powered by Vitest ensuring comprehensive test coverage for core structural specifications."
+        ],
+        "technicalChallenge": "Achieving dynamic state reactivity and DOM synchronization manually using pure TypeScript, eliminating rendering flicker by strategically toggling visibility classes instead of reconstructing components."
     }
 ]
