@@ -261,3 +261,28 @@ body {
         justify-content: space-between;
     }
 }
+
+.search-group {
+    flex: 1;
+    min-width: 250px;
+}
+
+.form-input {
+    width: 100%;
+    padding: 0.5rem 1rem;
+    background: #1e1e2e;
+    color: #cdd6f4;
+    border: 1px solid #45475a;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    outline: none;
+    transition: border-color 0.2s ease;
+}
+
+.form-input::placeholder {
+    color: #6c7086;
+}
+
+.form-input:focus {
+    border-color: #cba6f7;
+}

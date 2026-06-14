@@ -5,6 +5,7 @@ import {
     AllProjectsSpec,
     ProgrammingLanguageSpec,
     InterfaceTypeSpec,
+    SearchTextSpec,
 } from "../../domain/specs/ProjectSpecs";
 import { AndSpec } from "../../domain/specs/AndSpec";
 import type { Specification } from "../../domain/specs/Specification";
@@ -14,6 +15,7 @@ export class HomeView {
 
     private currentPlatformSpec: Specification<Project> = new AllProjectsSpec();
     private currentLanguageSpec: Specification<Project> = new AllProjectsSpec();
+    private currentSearchSpec: Specification<Project> = new AllProjectsSpec();
 
     constructor(private readonly getProjectsUseCase: GetProjects) {}
 
@@ -36,6 +38,15 @@ export class HomeView {
 
             this.container.innerHTML = `
                 <div class="filters-bar">
+                    <div class="filter-group search-group">
+                        <input 
+                            type="text" 
+                            id="search-input" 
+                            placeholder="Buscar proyecto por título o descripción..." 
+                            class="form-input"
+                        />
+                    </div>
+
                     <div class="filter-group">
                         <label for="platform-select">Platform</label>
                         <select id="platform-select" class="filter-dropdown">
@@ -63,6 +74,9 @@ export class HomeView {
     }
 
     private setupFilterEvents(): void {
+        const searchInput = document.getElementById(
+            "search-input",
+        ) as HTMLInputElement;
         const platformSelect = document.getElementById(
             "platform-select",
         ) as HTMLSelectElement;
@@ -70,26 +84,28 @@ export class HomeView {
             "language-select",
         ) as HTMLSelectElement;
 
-        if (!platformSelect || !languageSelect) return;
+        searchInput?.addEventListener("input", async (e) => {
+            const query = (e.target as HTMLInputElement).value;
+            this.currentSearchSpec = new SearchTextSpec(query);
+            await this.applyCombinedFilters();
+        });
 
-        platformSelect.addEventListener("change", () => {
-            const value = platformSelect.value;
+        platformSelect?.addEventListener("change", async (e) => {
+            const value = (e.target as HTMLSelectElement).value;
             this.currentPlatformSpec =
                 value === "All"
                     ? new AllProjectsSpec()
-                    : new InterfaceTypeSpec(value as Project["interfaceType"]);
-
-            this.applyCombinedFilters();
+                    : new InterfaceTypeSpec(value as any);
+            await this.applyCombinedFilters();
         });
 
-        languageSelect.addEventListener("change", () => {
-            const value = languageSelect.value;
+        languageSelect?.addEventListener("change", async (e) => {
+            const value = (e.target as HTMLSelectElement).value;
             this.currentLanguageSpec =
                 value === "All"
                     ? new AllProjectsSpec()
                     : new ProgrammingLanguageSpec(value);
-
-            this.applyCombinedFilters();
+            await this.applyCombinedFilters();
         });
     }
 
@@ -101,8 +117,8 @@ export class HomeView {
 
         try {
             const combinedSpec = new AndSpec(
-                this.currentPlatformSpec,
-                this.currentLanguageSpec,
+                this.currentSearchSpec,
+                new AndSpec(this.currentPlatformSpec, this.currentLanguageSpec),
             );
             const filteredProjects =
                 await this.getProjectsUseCase.execute(combinedSpec);
