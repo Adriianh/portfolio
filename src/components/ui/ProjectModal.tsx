@@ -1,0 +1,48 @@
+import type { Project } from "../../domain/entities/Project";
+import "../../styles/project-modal.css";
+
+interface Props {
+    project: Project;
+    onClose: () => void;
+}
+
+export function ProjectModal({ project, onClose }: Props) {
+    return (
+        <div className="modal-overlay" onClick={onClose}>
+            <div
+                className="modal-container"
+                onClick={(e) => e.stopPropagation()}
+            >
+                <button className="modal-close" onClick={onClose}>
+                    ×
+                </button>
+                <h2>{project.title}</h2>
+                <span className="modal-badge">{project.interfaceType}</span>
+                <p>{project.description}</p>
+
+                <h4>features</h4>
+                <ul>
+                    {project.features.map((f, i) => (
+                        <li key={i}>{f}</li>
+                    ))}
+                </ul>
+
+                <div className="modal-techs">
+                    {project.technologies.map((t, i) => (
+                        <span key={i} className="modal-tag">
+                            {t}
+                        </span>
+                    ))}
+                </div>
+
+                <a
+                    href={project.repositoryUrl}
+                    target="_blank"
+                    className="btn btn-outline"
+                >
+                    view source
+                </a>
+            </div>
+        </div>
+    );
+}

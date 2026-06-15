@@ -1,7 +1,17 @@
+import { Navbar } from "./components/layout/Navbar";
+import { Hero } from "./components/sections/Hero";
+import { Ticker } from "./components/layout/Ticker";
+import { Projects } from "./components/sections/Projects";
+import { SocialSidebar } from "./components/layout/SocialSidebar";
+
 export default function App() {
     return (
-        <div>
-            <h1>Hello, portfolio</h1>
-        </div>
+        <main className="main-content">
+            <SocialSidebar />
+            <Navbar />
+            <Hero />
+            <Ticker />
+            <Projects />
+        </main>
     );
 }
