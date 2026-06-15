@@ -30,6 +30,7 @@ body {
     color: var(--text);
     font-family: var(--font-mono);
     line-height: 1.6;
+    padding-left: 48px;
     -webkit-font-smoothing: antialiased;
 }
 
@@ -41,4 +42,18 @@ a {
 img {
     max-width: 100%;
     display: block;
+}
+
+.main-content {
+    padding-left: 96px;
+}
+
+@media (max-width: 768px) {
+    .main-content {
+        padding-left: 0;
+    }
+
+    .social-sidebar {
+        display: none;
+    }
 }
