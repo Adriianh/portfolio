@@ -46,6 +46,7 @@ img {
 
 .main-content {
     padding-left: 68px;
+    padding-right: 48px;
 }
 
 @media (max-width: 768px) {
