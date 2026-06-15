@@ -38,12 +38,14 @@ function TickerContent() {
 export function Ticker() {
     return (
         <div className="ticker">
-            <div className="ticker-track">
+            <div className="ticker-wrapper">
+                <div className="ticker-track">
                 {Array.from({ length: 4 }, (_, i) => (
                     <span key={i} className="ticker-group">
                         <TickerContent />
                     </span>
                 ))}
+                </div>
             </div>
         </div>
     );

@@ -1,12 +1,15 @@
 .ticker {
-    border-top: 0.5px solid var(--border);
-    border-bottom: 0.5px solid var(--border);
+    border: 0.5px solid var(--border);
+    border-radius: 8px;
     background: rgba(167, 139, 250, 0.05);
     overflow: hidden;
-    padding: 1rem 0;
     font-size: 0.9rem;
     color: var(--muted);
     font-family: var(--font-mono);
+}
+
+.ticker-wrapper {
+    padding: 1rem 3rem;
 }
 .ticker-track {
     display: flex;
