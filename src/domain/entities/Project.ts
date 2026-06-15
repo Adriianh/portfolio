@@ -6,6 +6,7 @@ export class Project {
         public readonly programmingLanguages: string[],
         public readonly technologies: string[],
         public readonly repositoryUrl: string,
+        public readonly previewUrl: string | null,
         public readonly interfaceType:
             | "CLI"
             | "Mobile"

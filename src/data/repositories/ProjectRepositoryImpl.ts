@@ -22,6 +22,7 @@ export class ProjectRepositoryImpl implements ProjectRepository {
                     item.programmingLanguages || [],
                     item.technologies || [],
                     item.repositoryUrl,
+                    item.previewUrl ? `${this.baseUrl}${item.previewUrl.replace(/^\//, "")}` : null,
                     item.interfaceType,
                     item.status,
                     item.features || [],
