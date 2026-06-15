@@ -1,0 +1,64 @@
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    align-items: start;
+}
+
+.skills-col {
+    border: 0.5px solid var(--border);
+    border-radius: 6px;
+    padding: 1rem 1.25rem;
+    height: fit-content;
+}
+
+.skills-col__items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px 12px;
+}
+
+.skills-col__item {
+    color: var(--muted);
+    font-size: 0.9rem;
+    font-family: var(--font-mono);
+}
+
+.skills-col__title {
+    color: var(--accent);
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin: 0 0 1rem;
+}
+
+.skills-layout {
+    display: grid;
+    grid-template-columns: 350px 1fr;
+    gap: 3rem;
+    align-items: start;
+}
+
+.skills-deco {
+    width: 349px;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.skills-deco svg {
+    display: block;
+}
+
+@media (max-width: 768px) {
+    .skills-layout {
+        grid-template-columns: 1fr;
+    }
+    .skills-deco {
+        display: none;
+    }
+
+    .skills-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
