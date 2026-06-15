@@ -1,0 +1,47 @@
+.section-label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 48px;
+    margin-bottom: 2.5rem;
+    position: relative;
+    padding: 32px 10px 0 32px;
+}
+
+.section-label__left {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex: 1;
+}
+
+.section-label__title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text);
+    white-space: nowrap;
+}
+
+.section-label__hash {
+    color: var(--accent);
+}
+
+.section-label__line {
+    flex: 1;
+    border: none;
+    border-top: 0.5px solid var(--border);
+    margin: 0;
+}
+
+.section-label__viewall {
+    font-size: 0.85rem;
+    color: var(--muted);
+    text-decoration: none;
+    white-space: nowrap;
+    font-family: var(--font-mono);
+    transition: color 0.2s;
+}
+
+.section-label__viewall:hover {
+    color: var(--accent);
+}
