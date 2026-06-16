@@ -4,6 +4,7 @@ import { Ticker } from "./components/layout/Ticker";
 import { Projects } from "./components/sections/Projects";
 import { SocialSidebar } from "./components/layout/SocialSidebar";
 import { Skills } from "./components/sections/Skills";
+import { About } from "./components/sections/About";
 
 export default function App() {
     return (
@@ -14,6 +15,7 @@ export default function App() {
             <Ticker />
             <Projects />
             <Skills />
+            <About />
         </main>
     );
 }

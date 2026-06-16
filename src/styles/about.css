@@ -1,0 +1,59 @@
+.about-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+}
+
+.about-greeting {
+    color: var(--accent);
+    font-size: 1rem;
+    font-weight: 600;
+    margin: 0 0 1.5rem;
+}
+
+.about-desc {
+    color: var(--muted);
+    font-size: 0.9rem;
+    line-height: 1.7;
+    margin: 0 0 1rem;
+}
+
+.about-visual {
+    display: flex;
+    justify-content: center;
+}
+
+.about-photo-frame {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.about-photo-frame svg {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.about-photo {
+    width: 260px;
+    height: 260px;
+    object-fit: cover;
+    border-radius: 50%;
+    position: relative;
+    z-index: 1;
+}
+
+@media (max-width: 768px) {
+    .about-layout {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    .about-visual {
+        order: -1;
+    }
+}
