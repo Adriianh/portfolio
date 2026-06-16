@@ -28,7 +28,11 @@ export function Hero() {
             </div>
             <div className="hero-visual">
                 <div className="dot-grid">
-                    <img src={photo} alt="Adrián Fúnez" />
+                    <img
+                        className="hero-photo"
+                        src={photo}
+                        alt="Adrián Fúnez"
+                    />
                 </div>
             </div>
         </section>
