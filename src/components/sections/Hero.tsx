@@ -1,5 +1,5 @@
 import { useTypingEffect } from "../../hooks/useTypingEffect";
-import photo from "../../assets/photo.png";
+import photo from "/assets/photo.png";
 import "../../styles/hero.css";
 
 export function Hero() {
