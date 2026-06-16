@@ -13,9 +13,9 @@ export function Navbar() {
             <div className="nav-links">
                 <Link to="/">home</Link>
                 <Link to="/works">works</Link>
-                <a href="#about">about</a>
-                <a href="#skills">skills</a>
-                <a href="#contact">contact</a>
+                <Link to="/about">about</Link>
+                <Link to="/skills">skills</Link>
+                <Link to="/contact">contact</Link>
             </div>
             <button
                 onClick={toggleTheme}

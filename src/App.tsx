@@ -3,6 +3,9 @@ import { Navbar } from "./components/layout/Navbar";
 import { SocialSidebar } from "./components/layout/SocialSidebar";
 import { Home } from "./components/sections/Home";
 import { Works } from "./components/sections/Works";
+import { AboutPage } from "./pages/AboutPage";
+import { SkillsPage } from "./pages/SkillsPage";
+import { ContactPage } from "./pages/ContactPage";
 
 export default function App() {
     return (
@@ -13,6 +16,9 @@ export default function App() {
                 <Routes>
                     <Route path="/" element={<Home />} />
                     <Route path="/works" element={<Works />} />
+                    <Route path="/about" element={<AboutPage />} />
+                    <Route path="/skills" element={<SkillsPage />} />
+                    <Route path="/contact" element={<ContactPage />} />
                 </Routes>
             </main>
         </HashRouter>

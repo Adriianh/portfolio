@@ -48,6 +48,139 @@
     z-index: 1;
 }
 
+.about-subtitle {
+    color: var(--accent);
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin: 0 0 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.about-timeline {
+    margin-top: 4rem;
+}
+
+.timeline-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.timeline-item {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: 1.5rem;
+    padding: 1rem 1.25rem;
+    border: 0.5px solid var(--border);
+    border-radius: 6px;
+    transition: border-color 0.2s;
+}
+
+.timeline-item:hover {
+    border-color: var(--accent);
+}
+
+.timeline-year {
+    color: var(--accent);
+    font-size: 0.85rem;
+    font-weight: 700;
+    padding-top: 0.15rem;
+}
+
+.timeline-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.timeline-title {
+    color: var(--text);
+    font-size: 1rem;
+    font-weight: 600;
+    margin: 0;
+}
+
+.timeline-subtitle {
+    color: var(--muted);
+    font-size: 0.8rem;
+    margin: 0;
+}
+
+.timeline-desc {
+    color: var(--muted);
+    font-size: 0.85rem;
+    line-height: 1.6;
+    margin: 0.25rem 0 0;
+}
+
+.about-facts {
+    margin-top: 4rem;
+}
+
+.facts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1rem;
+}
+
+.fact-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    padding: 1rem 1.25rem;
+    border: 0.5px solid var(--border);
+    border-radius: 6px;
+}
+
+.fact-icon {
+    color: var(--accent);
+    font-size: 1.1rem;
+    flex-shrink: 0;
+    line-height: 1;
+}
+
+.fact-text {
+    color: var(--muted);
+    font-size: 0.85rem;
+    margin: 0;
+    line-height: 1.5;
+}
+
+.about-hobbies {
+    margin-top: 4rem;
+}
+
+.hobbies-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1rem;
+}
+
+.hobby-card {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem 1rem;
+    border: 0.5px solid var(--border);
+    border-radius: 6px;
+    transition: border-color 0.2s;
+}
+
+.hobby-card:hover {
+    border-color: var(--accent);
+}
+
+.hobby-emoji {
+    font-size: 1.2rem;
+    line-height: 1;
+}
+
+.hobby-label {
+    color: var(--muted);
+    font-size: 0.85rem;
+}
+
 @media (max-width: 768px) {
     .about-layout {
         grid-template-columns: 1fr;
@@ -55,5 +188,10 @@
     }
     .about-visual {
         order: -1;
+    }
+
+    .timeline-item {
+        grid-template-columns: 1fr;
+        gap: 0.5rem;
     }
 }
