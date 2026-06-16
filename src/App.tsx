@@ -6,6 +6,7 @@ import { SocialSidebar } from "./components/layout/SocialSidebar";
 import { Skills } from "./components/sections/Skills";
 import { About } from "./components/sections/About";
 import { Contacts } from "./components/sections/Contacts";
+import { Footer } from "./components/layout/Footer";
 
 export default function App() {
     return (
@@ -18,6 +19,7 @@ export default function App() {
             <Skills />
             <About />
             <Contacts />
+            <Footer />
         </main>
     );
 }
