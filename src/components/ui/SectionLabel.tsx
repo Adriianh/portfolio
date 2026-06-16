@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import "../../styles/section-label.css";
 
 interface Props {
@@ -17,9 +18,9 @@ export function SectionLabel({ id, label, showViewAll = false }: Props) {
                 <hr className="section-label__line" />
             </div>
             {showViewAll && (
-                <a href="#" className="section-label__viewall">
+                <Link to="/works" className="section-label__viewall">
                     View all ~~&gt;
-                </a>
+                </Link>
             )}
         </div>
     );

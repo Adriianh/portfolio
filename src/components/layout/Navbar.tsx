@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { useTheme } from "../../hooks/useTheme";
 import "../../styles/navbar.css";
 
@@ -6,11 +7,14 @@ export function Navbar() {
 
     return (
         <nav>
-            <span className="logo">AF</span> {/* logo */}
+            <Link to="/" className="logo">
+                AF
+            </Link>
             <div className="nav-links">
-                <a href="#home">home</a>
-                <a href="#works">works</a>
+                <Link to="/">home</Link>
+                <Link to="/works">works</Link>
                 <a href="#about">about</a>
+                <a href="#skills">skills</a>
                 <a href="#contact">contact</a>
             </div>
             <button

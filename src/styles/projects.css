@@ -10,3 +10,55 @@
     text-align: center;
     padding: 3rem 0;
 }
+
+.works-filters {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+}
+
+.works-filters .form-input {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    color: var(--text);
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    padding: 0.5rem 0.75rem;
+    border-radius: 4px;
+    outline: none;
+    flex: 1;
+    min-width: 200px;
+}
+
+.works-filters .form-input:focus {
+    border-color: var(--accent);
+}
+
+.works-filters .filter-dropdown {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    color: var(--text);
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    padding: 0.5rem 0.75rem;
+    border-radius: 4px;
+    outline: none;
+    cursor: pointer;
+}
+
+.works-filters .filter-dropdown:focus {
+    border-color: var(--accent);
+}
+
+.works-filters .filter-dropdown option {
+    background: var(--bg-card);
+    color: var(--text);
+}
+
+.projects-empty {
+    color: var(--muted);
+    font-size: 0.9rem;
+    text-align: center;
+    padding: 3rem 0;
+}

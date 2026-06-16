@@ -1,25 +1,20 @@
+import { HashRouter, Routes, Route } from "react-router-dom";
 import { Navbar } from "./components/layout/Navbar";
-import { Hero } from "./components/sections/Hero";
-import { Ticker } from "./components/layout/Ticker";
-import { Projects } from "./components/sections/Projects";
 import { SocialSidebar } from "./components/layout/SocialSidebar";
-import { Skills } from "./components/sections/Skills";
-import { About } from "./components/sections/About";
-import { Contacts } from "./components/sections/Contacts";
-import { Footer } from "./components/layout/Footer";
+import { Home } from "./components/sections/Home";
+import { Works } from "./components/sections/Works";
 
 export default function App() {
     return (
-        <main className="main-content">
-            <SocialSidebar />
-            <Navbar />
-            <Hero />
-            <Ticker />
-            <Projects />
-            <Skills />
-            <About />
-            <Contacts />
-            <Footer />
-        </main>
+        <HashRouter>
+            <main className="main-content">
+                <SocialSidebar />
+                <Navbar />
+                <Routes>
+                    <Route path="/" element={<Home />} />
+                    <Route path="/works" element={<Works />} />
+                </Routes>
+            </main>
+        </HashRouter>
     );
 }
