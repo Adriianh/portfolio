@@ -7,11 +7,13 @@ import { AboutPage } from "./pages/AboutPage";
 import { SkillsPage } from "./pages/SkillsPage";
 import { ContactPage } from "./pages/ContactPage";
 import { NotFoundPage } from "./pages/NotFoundPage";
+import { BubbleBackground } from "./components/ui/BubbleBackground";
 
 export default function App() {
     return (
         <HashRouter>
             <main className="main-content">
+                <BubbleBackground />
                 <SocialSidebar />
                 <Navbar />
                 <Routes>
