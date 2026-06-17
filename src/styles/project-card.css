@@ -14,6 +14,7 @@
 
 .project-card:hover {
     border-color: var(--accent);
+    transform: scale(1.02);
 }
 
 .project-card__preview {
