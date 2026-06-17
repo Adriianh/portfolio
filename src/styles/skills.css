@@ -188,3 +188,27 @@
         grid-template-columns: 120px 1fr 40px;
     }
 }
+
+@media (max-width: 480px) {
+    .skills-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .proficiency-row {
+        grid-template-columns: 100px 1fr 35px;
+        gap: 0.5rem;
+    }
+
+    .proficiency-name {
+        font-size: 0.8rem;
+    }
+
+    .facts-grid,
+    .learning-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .hobbies-grid {
+        grid-template-columns: 1fr;
+    }
+}

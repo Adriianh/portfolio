@@ -73,6 +73,29 @@ a {
     color: #0f0e17;
 }
 
+.not-found-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 4rem 2rem;
+    gap: 1.5rem;
+}
+
+.not-found-code {
+    font-size: 5rem;
+    font-weight: 800;
+    color: var(--accent);
+    line-height: 1;
+}
+
+.not-found-desc {
+    color: var(--muted);
+    font-size: 0.9rem;
+    margin: 0;
+    max-width: 400px;
+}
+
 img {
     max-width: 100%;
     display: block;
@@ -84,8 +107,18 @@ img {
 }
 
 @media (max-width: 768px) {
+    body {
+        padding-left: 0;
+    }
+
     .main-content {
         padding-left: 0;
+        padding-right: 0;
+    }
+
+    .main-content section {
+        padding-left: 1.25rem;
+        padding-right: 1.25rem;
     }
 
     .social-sidebar {

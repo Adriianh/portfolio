@@ -6,6 +6,7 @@ import { Works } from "./components/sections/Works";
 import { AboutPage } from "./pages/AboutPage";
 import { SkillsPage } from "./pages/SkillsPage";
 import { ContactPage } from "./pages/ContactPage";
+import { NotFoundPage } from "./pages/NotFoundPage";
 
 export default function App() {
     return (
@@ -19,6 +20,7 @@ export default function App() {
                     <Route path="/about" element={<AboutPage />} />
                     <Route path="/skills" element={<SkillsPage />} />
                     <Route path="/contact" element={<ContactPage />} />
+                    <Route path="*" element={<NotFoundPage />} />
                 </Routes>
             </main>
         </HashRouter>

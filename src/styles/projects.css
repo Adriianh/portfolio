@@ -62,3 +62,13 @@
     text-align: center;
     padding: 3rem 0;
 }
+
+@media (max-width: 768px) {
+    .projects-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .works-filters .form-input {
+        min-width: 100%;
+    }
+}

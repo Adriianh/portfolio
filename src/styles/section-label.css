@@ -45,3 +45,14 @@
 .section-label__viewall:hover {
     color: var(--accent);
 }
+
+@media (max-width: 768px) {
+    .section-label {
+        padding: 24px 0 0;
+        gap: 24px;
+    }
+
+    .section-label__title {
+        font-size: 1.25rem;
+    }
+}
