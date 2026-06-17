@@ -116,6 +116,16 @@ a {
     max-width: 400px;
 }
 
+.page-loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 60vh;
+    color: var(--muted);
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+}
+
 img {
     max-width: 100%;
     display: block;

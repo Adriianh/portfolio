@@ -1,15 +1,29 @@
+import { lazy, Suspense } from "react";
 import { HashRouter, Routes, Route, useLocation } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
 import { Navbar } from "./components/layout/Navbar";
 import { SocialSidebar } from "./components/layout/SocialSidebar";
-import { Home } from "./components/sections/Home";
-import { Works } from "./components/sections/Works";
-import { AboutPage } from "./pages/AboutPage";
-import { SkillsPage } from "./pages/SkillsPage";
-import { ContactPage } from "./pages/ContactPage";
-import { NotFoundPage } from "./pages/NotFoundPage";
 import { BubbleBackground } from "./components/ui/BubbleBackground";
 import { BackToTop } from "./components/ui/BackToTop";
+
+const Home = lazy(() =>
+    import("./components/sections/Home").then((m) => ({ default: m.Home })),
+);
+const Works = lazy(() =>
+    import("./components/sections/Works").then((m) => ({ default: m.Works })),
+);
+const AboutPage = lazy(() =>
+    import("./pages/AboutPage").then((m) => ({ default: m.AboutPage })),
+);
+const SkillsPage = lazy(() =>
+    import("./pages/SkillsPage").then((m) => ({ default: m.SkillsPage })),
+);
+const ContactPage = lazy(() =>
+    import("./pages/ContactPage").then((m) => ({ default: m.ContactPage })),
+);
+const NotFoundPage = lazy(() =>
+    import("./pages/NotFoundPage").then((m) => ({ default: m.NotFoundPage })),
+);
 
 function AppRoutes() {
     const location = useLocation();
@@ -35,7 +49,11 @@ export default function App() {
                 <BubbleBackground />
                 <SocialSidebar />
                 <Navbar />
-                <AppRoutes />
+                <Suspense
+                    fallback={<div className="page-loading">Loading...</div>}
+                >
+                    <AppRoutes />
+                </Suspense>
             </main>
         </HashRouter>
     );
