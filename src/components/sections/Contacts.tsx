@@ -76,6 +76,7 @@ export function Contacts() {
                         <button
                             key={item.label}
                             className="contact-row contact-btn"
+                            data-label={item.label}
                             onClick={() => handleClick(item)}
                             title={
                                 item.href
@@ -83,7 +84,7 @@ export function Contacts() {
                                     : "Copy Discord username"
                             }
                         >
-                            <item.icon />
+                            <span className="contact-icon"><item.icon /></span>
                             <div>
                                 <p className="contact-label">{item.label}</p>
                                 <p className="contact-value">{item.value}</p>

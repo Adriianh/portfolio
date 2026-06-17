@@ -74,6 +74,46 @@
     font-size: 1.2rem;
     color: var(--accent);
     flex-shrink: 0;
+    display: inline-flex;
+    transition: color 0.2s ease;
+}
+
+.contact-btn:hover .contact-icon {
+    animation: shake 0.3s ease-in-out;
+}
+
+.contact-btn[data-label="LinkedIn"]:hover .contact-icon {
+    color: #0a66c2;
+}
+
+.contact-btn[data-label="GitHub"]:hover .contact-icon {
+    color: var(--text);
+}
+
+.contact-btn[data-label="Twitter"]:hover .contact-icon {
+    color: #1da1f2;
+}
+
+.contact-btn[data-label="Discord"]:hover .contact-icon {
+    color: #5865f2;
+}
+
+@keyframes shake {
+    0%, 100% {
+        transform: translateX(0);
+    }
+    20% {
+        transform: translateX(-3px);
+    }
+    40% {
+        transform: translateX(3px);
+    }
+    60% {
+        transform: translateX(-2px);
+    }
+    80% {
+        transform: translateX(2px);
+    }
 }
 
 .contact-label {
