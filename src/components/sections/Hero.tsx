@@ -1,3 +1,4 @@
+import { WaveBackground } from "../ui/WaveBackground";
 import { Link } from "react-router-dom";
 import { useTypingEffect } from "../../hooks/useTypingEffect";
 import { motion } from "framer-motion";
@@ -19,6 +20,7 @@ export function Hero() {
             viewport={{ once: true }}
             id="home"
         >
+            <WaveBackground />
             <div className="hero-content">
                 <p className="hero-greeting">Hello, I'm</p>
                 <h1>
