@@ -114,12 +114,20 @@ export function Works() {
             {error && <p className="projects-error">{error}</p>}
 
             <div className="projects-grid">
-                {filtered.map((p) => (
-                    <ProjectCard
+                {filtered.map((p, i) => (
+                    <motion.div
                         key={p.id}
-                        project={p}
-                        onSelect={setSelected}
-                    />
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{
+                            duration: 0.4,
+                            ease: "easeOut",
+                            delay: i * 0.1,
+                        }}
+                        viewport={{ once: true }}
+                    >
+                        <ProjectCard project={p} onSelect={setSelected} />
+                    </motion.div>
                 ))}
             </div>
 
