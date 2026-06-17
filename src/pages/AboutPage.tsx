@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { SectionLabel } from "../components/ui/SectionLabel";
+import { motion } from "framer-motion";
 import photo from "/assets/photo.png";
 import "../styles/about.css";
 
@@ -96,7 +97,13 @@ function AboutDeco() {
 
 export function AboutPage() {
     return (
-        <section id="about">
+        <motion.section
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+            viewport={{ once: true }}
+            id="about"
+        >
             <SectionLabel id="about" label="about" />
 
             <div className="about-layout">
@@ -168,6 +175,6 @@ export function AboutPage() {
                     ))}
                 </div>
             </div>
-        </section>
+        </motion.section>
     );
 }

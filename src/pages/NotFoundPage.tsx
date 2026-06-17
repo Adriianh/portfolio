@@ -1,9 +1,16 @@
 import { Link } from "react-router-dom";
 import { SectionLabel } from "../components/ui/SectionLabel";
+import { motion } from "framer-motion";
 
 export function NotFoundPage() {
     return (
-        <section className="not-found">
+        <motion.section
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+            viewport={{ once: true }}
+            className="not-found"
+        >
             <SectionLabel id="404" label="404" />
 
             <div className="not-found-content">
@@ -15,6 +22,6 @@ export function NotFoundPage() {
                     go home →
                 </Link>
             </div>
-        </section>
+        </motion.section>
     );
 }

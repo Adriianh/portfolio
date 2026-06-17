@@ -1,8 +1,23 @@
 import { SectionLabel } from "../ui/SectionLabel";
+import { motion } from "framer-motion";
 import photo from "/assets/photo.png";
 import "../../styles/about.css";
 
-function DotGrid({ x, y, cols, rows, gapX, gapY }: { x: number; y: number; cols: number; rows: number; gapX: number; gapY: number }) {
+function DotGrid({
+    x,
+    y,
+    cols,
+    rows,
+    gapX,
+    gapY,
+}: {
+    x: number;
+    y: number;
+    cols: number;
+    rows: number;
+    gapX: number;
+    gapY: number;
+}) {
     return (
         <>
             {Array.from({ length: rows * cols }, (_, i) => (
@@ -20,7 +35,13 @@ function DotGrid({ x, y, cols, rows, gapX, gapY }: { x: number; y: number; cols:
 
 function AboutDeco() {
     return (
-        <svg width="327" height="276" viewBox="0 0 327 276" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <svg
+            width="327"
+            height="276"
+            viewBox="0 0 327 276"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+        >
             <DotGrid x={2} y={2} cols={5} rows={5} gapX={20} gapY={20} />
             <DotGrid x={225} y={222} cols={5} rows={4} gapX={25} gapY={17.33} />
         </svg>
@@ -29,7 +50,13 @@ function AboutDeco() {
 
 export function About() {
     return (
-        <section id="about">
+        <motion.section
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+            viewport={{ once: true }}
+            id="about"
+        >
             <SectionLabel id="about" label="about" />
 
             <div className="about-layout">
@@ -59,6 +86,6 @@ export function About() {
                     </div>
                 </div>
             </div>
-        </section>
+        </motion.section>
     );
 }

@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { useTypingEffect } from "../../hooks/useTypingEffect";
+import { motion } from "framer-motion";
 import photo from "/assets/photo.png";
 import "../../styles/hero.css";
 
@@ -11,7 +12,13 @@ export function Hero() {
     );
 
     return (
-        <section id="home">
+        <motion.section
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+            viewport={{ once: true }}
+            id="home"
+        >
             <div className="hero-content">
                 <p className="hero-greeting">Hello, I'm</p>
                 <h1>
@@ -36,6 +43,6 @@ export function Hero() {
                     />
                 </div>
             </div>
-        </section>
+        </motion.section>
     );
 }

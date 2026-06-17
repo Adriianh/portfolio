@@ -2,6 +2,7 @@ import { useState } from "react";
 import { SectionLabel } from "../components/ui/SectionLabel";
 import { MdWavingHand, MdEmail } from "react-icons/md";
 import { FaLinkedin, FaGithub, FaTwitter, FaDiscord } from "react-icons/fa";
+import { motion } from "framer-motion";
 import type { IconType } from "react-icons";
 import "../styles/contacts.css";
 
@@ -98,7 +99,13 @@ export function ContactPage() {
     }
 
     return (
-        <section id="contact">
+        <motion.section
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+            viewport={{ once: true }}
+            id="contact"
+        >
             <SectionLabel id="contact" label="contacts" />
 
             <div className="contact-layout">
@@ -137,7 +144,9 @@ export function ContactPage() {
                                     : "Copy Discord username"
                             }
                         >
-                            <span className="contact-icon"><item.icon /></span>
+                            <span className="contact-icon">
+                                <item.icon />
+                            </span>
                             <div>
                                 <p className="contact-label">{item.label}</p>
                                 <p className="contact-value">{item.value}</p>
@@ -205,6 +214,6 @@ export function ContactPage() {
                     ))}
                 </div>
             </div>
-        </section>
+        </motion.section>
     );
 }

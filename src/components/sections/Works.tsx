@@ -12,6 +12,7 @@ import {
     SearchTextSpec,
 } from "../../domain/specs/ProjectSpecs";
 import { AndSpec } from "../../domain/specs/AndSpec";
+import { motion } from "framer-motion";
 import "../../styles/projects.css";
 
 const baseUrl = import.meta.env.BASE_URL;
@@ -64,7 +65,13 @@ export function Works() {
     ];
 
     return (
-        <section id="works">
+        <motion.section
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+            viewport={{ once: true }}
+            id="works"
+        >
             <SectionLabel id="works" label="works" />
 
             <div className="works-filters">
@@ -122,6 +129,6 @@ export function Works() {
                     onClose={() => setSelected(null)}
                 />
             )}
-        </section>
+        </motion.section>
     );
 }

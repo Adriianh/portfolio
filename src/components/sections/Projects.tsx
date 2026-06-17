@@ -7,6 +7,7 @@ import { SectionLabel } from "../ui/SectionLabel";
 import type { Project } from "../../domain/entities/Project";
 import { AllProjectsSpec } from "../../domain/specs/ProjectSpecs";
 import "../../styles/projects.css";
+import { motion } from "framer-motion";
 
 const baseUrl = import.meta.env.BASE_URL;
 
@@ -28,7 +29,13 @@ export function Projects() {
         <section id="works">
             <SectionLabel id="works" label="works" showViewAll />
 
-            <div className="projects-grid">
+            <motion.div
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, ease: "easeOut" }}
+                viewport={{ once: true }}
+                className="projects-grid"
+            >
                 {featured.map((p) => (
                     <ProjectCard
                         key={p.id}
@@ -36,7 +43,7 @@ export function Projects() {
                         onSelect={setSelected}
                     />
                 ))}
-            </div>
+            </motion.div>
 
             {selected && (
                 <ProjectModal

@@ -2,6 +2,7 @@ import { useState } from "react";
 import { SectionLabel } from "../ui/SectionLabel";
 import { MdEmail } from "react-icons/md";
 import { FaLinkedin, FaGithub, FaTwitter, FaDiscord } from "react-icons/fa";
+import { motion } from "framer-motion";
 import type { IconType } from "react-icons";
 import "../../styles/contacts.css";
 
@@ -13,10 +14,30 @@ type ContactItem = {
 };
 
 const items: ContactItem[] = [
-    { label: "Email", value: "adriianh@proton.me", icon: MdEmail, href: "mailto:adriianh@proton.me" },
-    { label: "LinkedIn", value: "linkedin.com/in/adriianh", icon: FaLinkedin, href: "https://linkedin.com/in/adriianh" },
-    { label: "GitHub", value: "github.com/adriianh", icon: FaGithub, href: "https://github.com/adriianh" },
-    { label: "Twitter", value: "twitter.com/adriiianhh", icon: FaTwitter, href: "https://twitter.com/adriiianhh" },
+    {
+        label: "Email",
+        value: "adriianh@proton.me",
+        icon: MdEmail,
+        href: "mailto:adriianh@proton.me",
+    },
+    {
+        label: "LinkedIn",
+        value: "linkedin.com/in/adriianh",
+        icon: FaLinkedin,
+        href: "https://linkedin.com/in/adriianh",
+    },
+    {
+        label: "GitHub",
+        value: "github.com/adriianh",
+        icon: FaGithub,
+        href: "https://github.com/adriianh",
+    },
+    {
+        label: "Twitter",
+        value: "twitter.com/adriiianhh",
+        icon: FaTwitter,
+        href: "https://twitter.com/adriiianhh",
+    },
     { label: "Discord", value: "adriiianhh", icon: FaDiscord, href: null },
 ];
 
@@ -53,7 +74,13 @@ export function Contacts() {
     }
 
     return (
-        <section id="contact">
+        <motion.section
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+            viewport={{ once: true }}
+            id="contact"
+        >
             <SectionLabel id="contact" label="contacts" />
 
             <div className="contact-layout">
@@ -84,7 +111,9 @@ export function Contacts() {
                                     : "Copy Discord username"
                             }
                         >
-                            <span className="contact-icon"><item.icon /></span>
+                            <span className="contact-icon">
+                                <item.icon />
+                            </span>
                             <div>
                                 <p className="contact-label">{item.label}</p>
                                 <p className="contact-value">{item.value}</p>
@@ -97,6 +126,6 @@ export function Contacts() {
             {copied && (
                 <div className="contact-toast">discord username copied!</div>
             )}
-        </section>
+        </motion.section>
     );
 }
