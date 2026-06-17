@@ -101,7 +101,7 @@ export function AboutPage() {
 
             <div className="about-layout">
                 <div className="about-text">
-                    <p className="about-greeting">hello, i'm Adrián</p>
+                    <p className="about-greeting">Hello, I'm Adrián</p>
                     <p className="about-desc">
                         I'm a software developer and electronic engineering
                         student based in Guatemala. I started programming
@@ -158,7 +158,7 @@ export function AboutPage() {
             </div>
 
             <div className="about-hobbies">
-                <h3 className="about-subtitle">/ when i'm not coding</h3>
+                <h3 className="about-subtitle">/ when I'm not coding</h3>
                 <div className="hobbies-grid">
                     {hobbies.map((hobby) => (
                         <div key={hobby.label} className="hobby-card">

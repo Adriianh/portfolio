@@ -34,7 +34,7 @@ export function About() {
 
             <div className="about-layout">
                 <div className="about-text">
-                    <p className="about-greeting">hello, i'm Adrián</p>
+                    <p className="about-greeting">Hello, I'm Adrián</p>
                     <p className="about-desc">
                         I'm a software developer and electronic engineering
                         student based in Guatemala. I started programming

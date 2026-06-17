@@ -13,7 +13,7 @@ export function Hero() {
     return (
         <section id="home">
             <div className="hero-content">
-                <p className="hero-greeting">hello i'm</p>
+                <p className="hero-greeting">Hello, I'm</p>
                 <h1>
                     Adrián <span>Fúnez</span>
                 </h1>

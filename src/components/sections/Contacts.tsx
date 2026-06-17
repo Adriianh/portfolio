@@ -1,17 +1,38 @@
+import { useState } from "react";
 import { SectionLabel } from "../ui/SectionLabel";
-import { MdWavingHand, MdEmail } from "react-icons/md";
+import { MdEmail } from "react-icons/md";
 import { FaLinkedin, FaGithub, FaTwitter, FaDiscord } from "react-icons/fa";
 import "../../styles/contacts.css";
 
-const items = [
-    { label: "Email", value: "adriianh@proton.me", icon: MdEmail },
-    { label: "LinkedIn", value: "linkedin.com/in/adriianh", icon: FaLinkedin },
-    { label: "GitHub", value: "github.com/adriianh", icon: FaGithub },
-    { label: "Twitter", value: "twitter.com/adriiianhh", icon: FaTwitter },
-    { label: "Discord", value: "adriiianhh", icon: FaDiscord },
+type ContactItem = {
+    label: string;
+    value: string;
+    icon: React.ComponentType;
+    href: string | null; // null = copy to clipboard
+};
+
+const items: ContactItem[] = [
+    { label: "Email", value: "adriianh@proton.me", icon: MdEmail, href: "mailto:adriianh@proton.me" },
+    { label: "LinkedIn", value: "linkedin.com/in/adriianh", icon: FaLinkedin, href: "https://linkedin.com/in/adriianh" },
+    { label: "GitHub", value: "github.com/adriianh", icon: FaGithub, href: "https://github.com/adriianh" },
+    { label: "Twitter", value: "twitter.com/adriiianhh", icon: FaTwitter, href: "https://twitter.com/adriiianhh" },
+    { label: "Discord", value: "adriiianhh", icon: FaDiscord, href: null },
 ];
 
 export function Contacts() {
+    const [copied, setCopied] = useState(false);
+
+    function handleClick(item: ContactItem) {
+        if (item.href) {
+            window.open(item.href, "_blank", "noopener,noreferrer");
+        } else {
+            navigator.clipboard.writeText(item.value).then(() => {
+                setCopied(true);
+                setTimeout(() => setCopied(false), 2000);
+            });
+        }
+    }
+
     return (
         <section id="contact">
             <SectionLabel id="contact" label="contacts" />
@@ -27,22 +48,34 @@ export function Contacts() {
                     <p className="contact-desc">
                         I'm always open to new opportunities and collaborations.
                         Whether you have a project in mind, want to chat about
-                        tech, or just want to say hi <MdWavingHand />, feel free
-                        to drop me a message.
+                        tech, or just feel free to drop me a message.
                     </p>
                 </div>
 
                 <div className="contact-card">
-                    {items.map(({ label, value, icon: Icon }) => (
-                        <div key={label} className="contact-row">
-                            <Icon className="contact-icon" />
+                    {items.map((item) => (
+                        <button
+                            key={item.label}
+                            className="contact-row contact-btn"
+                            onClick={() => handleClick(item)}
+                            title={
+                                item.href
+                                    ? `Open ${item.label}`
+                                    : "Copy Discord username"
+                            }
+                        >
+                            <item.icon />
                             <div>
-                                <p className="contact-label">{label}</p>
-                                <p className="contact-value">{value}</p>
+                                <p className="contact-label">{item.label}</p>
+                                <p className="contact-value">{item.value}</p>
                             </div>
-                        </div>
+                        </button>
                     ))}
                 </div>
+
+                {copied && (
+                    <div className="contact-toast">discord username copied!</div>
+                )}
             </div>
         </section>
     );

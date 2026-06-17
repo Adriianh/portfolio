@@ -4,12 +4,39 @@ import { MdWavingHand, MdEmail } from "react-icons/md";
 import { FaLinkedin, FaGithub, FaTwitter, FaDiscord } from "react-icons/fa";
 import "../styles/contacts.css";
 
-const items = [
-    { label: "Email", value: "adriianh@proton.me", icon: MdEmail },
-    { label: "LinkedIn", value: "linkedin.com/in/adriianh", icon: FaLinkedin },
-    { label: "GitHub", value: "github.com/adriianh", icon: FaGithub },
-    { label: "Twitter", value: "twitter.com/adriiianhh", icon: FaTwitter },
-    { label: "Discord", value: "adriiianhh", icon: FaDiscord },
+type ContactItem = {
+    label: string;
+    value: string;
+    icon: React.ComponentType;
+    href: string | null;
+};
+
+const items: ContactItem[] = [
+    {
+        label: "Email",
+        value: "adriianh@proton.me",
+        icon: MdEmail,
+        href: "mailto:adriianh@proton.me",
+    },
+    {
+        label: "LinkedIn",
+        value: "linkedin.com/in/adriianh",
+        icon: FaLinkedin,
+        href: "https://linkedin.com/in/adriianh",
+    },
+    {
+        label: "GitHub",
+        value: "github.com/adriianh",
+        icon: FaGithub,
+        href: "https://github.com/adriianh",
+    },
+    {
+        label: "Twitter",
+        value: "twitter.com/adriiianhh",
+        icon: FaTwitter,
+        href: "https://twitter.com/adriiianhh",
+    },
+    { label: "Discord", value: "adriiianhh", icon: FaDiscord, href: null },
 ];
 
 const faqs = [
@@ -27,16 +54,28 @@ const faqs = [
     },
     {
         q: "What's the best way to reach you?",
-        a: "Email and discord are usually the best ways to get in touch. I'm pretty responsive on both platforms.",
+        a: "Email and Discord are usually the best ways to get in touch. I'm pretty responsive on both platforms.",
     },
 ];
 
 export function ContactPage() {
     const [sent, setSent] = useState(false);
+    const [copied, setCopied] = useState(false);
 
     function handleSubmit(e: React.SubmitEvent<HTMLFormElement>) {
         e.preventDefault();
         setSent(true);
+    }
+
+    function handleClick(item: ContactItem) {
+        if (item.href) {
+            window.open(item.href, "_blank", "noopener,noreferrer");
+        } else {
+            navigator.clipboard.writeText(item.value).then(() => {
+                setCopied(true);
+                setTimeout(() => setCopied(false), 2000);
+            });
+        }
     }
 
     return (
@@ -67,16 +106,31 @@ export function ContactPage() {
                 </div>
 
                 <div className="contact-card">
-                    {items.map(({ label, value, icon: Icon }) => (
-                        <div key={label} className="contact-row">
-                            <Icon className="contact-icon" />
+                    {items.map((item) => (
+                        <button
+                            key={item.label}
+                            className="contact-row contact-btn"
+                            onClick={() => handleClick(item)}
+                            title={
+                                item.href
+                                    ? `Open ${item.label}`
+                                    : "Copy Discord username"
+                            }
+                        >
+                            <item.icon />
                             <div>
-                                <p className="contact-label">{label}</p>
-                                <p className="contact-value">{value}</p>
+                                <p className="contact-label">{item.label}</p>
+                                <p className="contact-value">{item.value}</p>
                             </div>
-                        </div>
+                        </button>
                     ))}
                 </div>
+
+                {copied && (
+                    <div className="contact-toast">
+                        discord username copied!
+                    </div>
+                )}
             </div>
 
             <div className="contact-form-section">
