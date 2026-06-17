@@ -11,6 +11,13 @@
     padding: 3rem 0;
 }
 
+.projects-error {
+    color: var(--error);
+    font-size: 0.9rem;
+    text-align: center;
+    padding: 3rem 0;
+}
+
 .works-filters {
     display: flex;
     gap: 1rem;

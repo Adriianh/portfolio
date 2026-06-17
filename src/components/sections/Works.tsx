@@ -22,11 +22,22 @@ export function Works() {
     const [platform, setPlatform] = useState("All");
     const [language, setLanguage] = useState("All");
     const [search, setSearch] = useState("");
+    const [isLoading, setIsLoading] = useState(true);
+    const [error, setError] = useState<string | null>(null);
 
     useEffect(() => {
         const repo = new ProjectRepositoryImpl(baseUrl);
         const getProjects = new GetProjects(repo);
-        getProjects.execute(new AllProjectsSpec()).then(setProjects);
+        getProjects
+            .execute(new AllProjectsSpec())
+            .then((data) => {
+                setProjects(data);
+                setIsLoading(false);
+            })
+            .catch((err) => {
+                setError(err.message || "Failed to load projects");
+                setIsLoading(false);
+            });
     }, []);
 
     const filtered = projects.filter((p) => {
@@ -47,9 +58,7 @@ export function Works() {
         ).isSatisfiedBy(p);
     });
 
-    const uniquePlatforms = [
-        ...new Set(projects.map((p) => p.interfaceType)),
-    ];
+    const uniquePlatforms = [...new Set(projects.map((p) => p.interfaceType))];
     const uniqueLanguages = [
         ...new Set(projects.flatMap((p) => p.programmingLanguages)),
     ];
@@ -92,6 +101,11 @@ export function Works() {
                 </select>
             </div>
 
+            {!isLoading && filtered.length === 0 && (
+                <p className="projects-loading">loading projects...</p>
+            )}
+            {error && <p className="projects-error">{error}</p>}
+
             <div className="projects-grid">
                 {filtered.map((p) => (
                     <ProjectCard
@@ -101,12 +115,6 @@ export function Works() {
                     />
                 ))}
             </div>
-
-            {filtered.length === 0 && (
-                <p className="projects-empty">
-                    no projects match your filters
-                </p>
-            )}
 
             {selected && (
                 <ProjectModal
