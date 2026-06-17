@@ -2,13 +2,14 @@ import { useState } from "react";
 import { SectionLabel } from "../ui/SectionLabel";
 import { MdEmail } from "react-icons/md";
 import { FaLinkedin, FaGithub, FaTwitter, FaDiscord } from "react-icons/fa";
+import type { IconType } from "react-icons";
 import "../../styles/contacts.css";
 
 type ContactItem = {
     label: string;
     value: string;
-    icon: React.ComponentType;
-    href: string | null; // null = copy to clipboard
+    icon: IconType;
+    href: string | null;
 };
 
 const items: ContactItem[] = [
@@ -22,14 +23,32 @@ const items: ContactItem[] = [
 export function Contacts() {
     const [copied, setCopied] = useState(false);
 
+    function copyToClipboard(text: string) {
+        if (navigator.clipboard) {
+            navigator.clipboard.writeText(text).catch(() => fallbackCopy(text));
+        } else {
+            fallbackCopy(text);
+        }
+        setCopied(true);
+        setTimeout(() => setCopied(false), 2000);
+    }
+
+    function fallbackCopy(text: string) {
+        const input = document.createElement("input");
+        input.value = text;
+        input.style.position = "fixed";
+        input.style.opacity = "0";
+        document.body.appendChild(input);
+        input.select();
+        document.execCommand("copy");
+        document.body.removeChild(input);
+    }
+
     function handleClick(item: ContactItem) {
         if (item.href) {
             window.open(item.href, "_blank", "noopener,noreferrer");
         } else {
-            navigator.clipboard.writeText(item.value).then(() => {
-                setCopied(true);
-                setTimeout(() => setCopied(false), 2000);
-            });
+            copyToClipboard(item.value);
         }
     }
 
@@ -72,11 +91,11 @@ export function Contacts() {
                         </button>
                     ))}
                 </div>
-
-                {copied && (
-                    <div className="contact-toast">discord username copied!</div>
-                )}
             </div>
+
+            {copied && (
+                <div className="contact-toast">discord username copied!</div>
+            )}
         </section>
     );
 }
