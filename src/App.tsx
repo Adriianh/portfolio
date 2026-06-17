@@ -9,6 +9,7 @@ import { SkillsPage } from "./pages/SkillsPage";
 import { ContactPage } from "./pages/ContactPage";
 import { NotFoundPage } from "./pages/NotFoundPage";
 import { BubbleBackground } from "./components/ui/BubbleBackground";
+import { BackToTop } from "./components/ui/BackToTop";
 
 function AppRoutes() {
     const location = useLocation();
@@ -29,6 +30,7 @@ function AppRoutes() {
 export default function App() {
     return (
         <HashRouter>
+            <BackToTop />
             <main className="main-content">
                 <BubbleBackground />
                 <SocialSidebar />
