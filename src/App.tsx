@@ -24,6 +24,11 @@ const ContactPage = lazy(() =>
 const NotFoundPage = lazy(() =>
     import("./pages/NotFoundPage").then((m) => ({ default: m.NotFoundPage })),
 );
+const ProjectDetailPage = lazy(() =>
+    import("./pages/ProjectDetailPage").then((m) => ({
+        default: m.ProjectDetailPage,
+    })),
+);
 
 function AppRoutes() {
     const location = useLocation();
@@ -35,6 +40,7 @@ function AppRoutes() {
                 <Route path="/about" element={<AboutPage />} />
                 <Route path="/skills" element={<SkillsPage />} />
                 <Route path="/contact" element={<ContactPage />} />
+                <Route path="/works/:slug" element={<ProjectDetailPage />} />
                 <Route path="*" element={<NotFoundPage />} />
             </Routes>
         </AnimatePresence>

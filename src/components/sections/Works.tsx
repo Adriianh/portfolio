@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { GetProjects } from "../../domain/use-cases/GetProjects";
 import { ProjectRepositoryImpl } from "../../data/repositories/ProjectRepositoryImpl";
 import { ProjectCard } from "../ui/ProjectCard";
-import { ProjectModal } from "../ui/ProjectModal";
 import { SectionLabel } from "../ui/SectionLabel";
 import type { Project } from "../../domain/entities/Project";
 import {
@@ -19,12 +19,13 @@ const baseUrl = import.meta.env.BASE_URL;
 
 export function Works() {
     const [projects, setProjects] = useState<Project[]>([]);
-    const [selected, setSelected] = useState<Project | null>(null);
     const [platform, setPlatform] = useState("All");
     const [language, setLanguage] = useState("All");
     const [search, setSearch] = useState("");
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
+
+    const navigate = useNavigate();
 
     useEffect(() => {
         const repo = new ProjectRepositoryImpl(baseUrl);
@@ -127,17 +128,15 @@ export function Works() {
                         }}
                         viewport={{ once: true }}
                     >
-                        <ProjectCard project={p} onSelect={setSelected} />
+                        <ProjectCard
+                            project={p}
+                            onSelect={(project) =>
+                                navigate(`/works/${project.id}`)
+                            }
+                        />
                     </motion.div>
                 ))}
             </div>
-
-            {selected && (
-                <ProjectModal
-                    project={selected}
-                    onClose={() => setSelected(null)}
-                />
-            )}
         </motion.section>
     );
 }

@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import type { Project } from "../../domain/entities/Project";
 import "../../styles/project-modal.css";
 
@@ -7,6 +8,8 @@ interface Props {
 }
 
 export function ProjectModal({ project, onClose }: Props) {
+    const navigate = useNavigate();
+
     return (
         <div className="modal-overlay" onClick={onClose}>
             <div
@@ -34,6 +37,17 @@ export function ProjectModal({ project, onClose }: Props) {
                         </span>
                     ))}
                 </div>
+
+                <button
+                    className="btn btn-primary"
+                    onClick={() => {
+                        onClose();
+                        navigate(`/works/${project.id}`);
+                    }}
+                    style={{ marginRight: "0.5rem" }}
+                >
+                    view full details
+                </button>
 
                 <a
                     href={project.repositoryUrl}
