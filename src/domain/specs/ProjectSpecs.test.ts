@@ -22,6 +22,12 @@ describe("Domain Architecture: Specification Pattern Unit Tests", () => {
         "Ready",
         ["User authentication", "Responsive design"],
         "Integrating third-party APIs",
+        false,
+        "large",
+        "This is a long description of the frontend project.",
+        ["screenshot1.png", "screenshot2.png"],
+        "https://demo-url.com",
+        ["Learned about state management", "Improved CSS skills"],
     );
 
     const mockDesktopProject = new Project(
@@ -36,6 +42,12 @@ describe("Domain Architecture: Specification Pattern Unit Tests", () => {
         "In Progress",
         ["Cross-platform support", "Offline functionality"],
         "Ensuring consistent UI across platforms",
+        true,
+        "medium",
+        "This is a long description of the desktop project.",
+        ["screenshot3.png"],
+        "https://demo-url-desktop.com",
+        ["Learned about desktop development", "Improved C# skills"],
     );
 
     describe("AllProjectsSpec", () => {

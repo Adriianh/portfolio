@@ -18,6 +18,12 @@ describe("Application Layer: GetProjects Use Case", () => {
             "In Development",
             ["Feature1"],
             "Challenge1",
+            true,
+            "small",
+            "Long Desc",
+            [],
+            null,
+            [],
         ),
         new Project(
             "2",
@@ -31,6 +37,12 @@ describe("Application Layer: GetProjects Use Case", () => {
             "Ready",
             ["Feature2"],
             "Challenge2",
+            true,
+            "medium",
+            "Long desc 2",
+            [],
+            null,
+            [],
         ),
         new Project(
             "3",
@@ -44,6 +56,12 @@ describe("Application Layer: GetProjects Use Case", () => {
             "In Development",
             ["Feature3"],
             "Challenge3",
+            true,
+            "large",
+            "Long desc 3",
+            [],
+            null,
+            [],
         ),
     ];
 

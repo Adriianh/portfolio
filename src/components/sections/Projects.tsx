@@ -23,7 +23,7 @@ export function Projects() {
         });
     }, []);
 
-    const featured = projects.filter((p) => p.status === "Completed");
+    const featured = projects.filter((p) => p.featured);
 
     return (
         <motion.section

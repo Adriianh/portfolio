@@ -16,5 +16,11 @@ export class Project {
         public readonly status: string,
         public readonly features: string[],
         public readonly technicalChallenge: string,
+        public readonly featured: boolean,
+        public readonly category: "small" | "medium" | "large",
+        public readonly longDescription: string,
+        public readonly screenshots: string[],
+        public readonly demoUrl: string | null,
+        public readonly learnings: string[],
     ) {}
 }

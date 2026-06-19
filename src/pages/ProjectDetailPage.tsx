@@ -62,11 +62,33 @@ export function ProjectDetailPage() {
             <h1>{project.title}</h1>
             <span className="detail-badge">{project.interfaceType}</span>
 
+            {project.screenshots.length > 0 && (
+                <>
+                    <h3>Screenshots</h3>
+                    <div className="detail-gallery">
+                        {project.screenshots.map((src, i) => (
+                            <img
+                                key={i}
+                                src={src}
+                                alt={`${project.title} screenshot ${i + 1}`}
+                            />
+                        ))}
+                    </div>
+                </>
+            )}
+
             {project.previewUrl && (
                 <img src={project.previewUrl} alt={project.title} />
             )}
 
             <p>{project.description}</p>
+
+            {project.longDescription && (
+                <>
+                    <h3>About</h3>
+                    <p>{project.longDescription}</p>
+                </>
+            )}
 
             <h3>Technical Challenge</h3>
             <p>{project.technicalChallenge}</p>
@@ -77,6 +99,17 @@ export function ProjectDetailPage() {
                     <li key={i}>{f}</li>
                 ))}
             </ul>
+
+            {project.learnings.length > 0 && (
+                <>
+                    <h3>Learnings</h3>
+                    <ul>
+                        {project.learnings.map((l, i) => (
+                            <li key={i}>{l}</li>
+                        ))}
+                    </ul>
+                </>
+            )}
 
             <h3>Technologies</h3>
             <div className="detail-techs">
@@ -95,13 +128,13 @@ export function ProjectDetailPage() {
                 >
                     view source
                 </a>
-                {project.previewUrl && (
+                {project.demoUrl && (
                     <a
-                        href={project.previewUrl}
+                        href={project.demoUrl}
                         target="_blank"
                         className="btn btn-outline"
                     >
-                        live preview
+                        live demo
                     </a>
                 )}
             </div>
