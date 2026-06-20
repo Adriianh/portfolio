@@ -38,24 +38,25 @@ export function ProjectModal({ project, onClose }: Props) {
                     ))}
                 </div>
 
-                <button
-                    className="btn btn-primary"
-                    onClick={() => {
-                        onClose();
-                        navigate(`/works/${project.id}`);
-                    }}
-                    style={{ marginRight: "0.5rem" }}
-                >
-                    view full details
-                </button>
+                <div className="modal-actions">
+                    <button
+                        className="btn btn-primary"
+                        onClick={() => {
+                            onClose();
+                            navigate(`/works/${project.id}`);
+                        }}
+                    >
+                        view full details
+                    </button>
 
-                <a
-                    href={project.repositoryUrl}
-                    target="_blank"
-                    className="btn btn-outline"
-                >
-                    view source
-                </a>
+                    <a
+                        href={project.repositoryUrl}
+                        target="_blank"
+                        className="btn btn-outline"
+                    >
+                        view source
+                    </a>
+                </div>
             </div>
         </div>
     );

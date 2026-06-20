@@ -39,6 +39,11 @@
     scroll-snap-type: x mandatory;
 }
 
+.detail-back-btn {
+    margin-top: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+
 .detail-gallery img {
     flex: 0 0 auto;
     width: 100%;
@@ -56,7 +61,6 @@
 .carousel-viewport {
     position: relative;
     border-radius: 8px;
-    overflow: hidden;
     border: 1px solid var(--border);
     background: var(--bg-card);
 }
@@ -66,6 +70,7 @@
     display: block;
     aspect-ratio: 16 / 9;
     object-fit: cover;
+    border-radius: 8px;
 }
 
 .carousel-btn {
@@ -94,11 +99,11 @@
 }
 
 .carousel-prev {
-    left: 0.75rem;
+    left: -3rem;
 }
 
 .carousel-next {
-    right: 0.75rem;
+    right: -3rem;
 }
 
 .carousel-dots {
@@ -230,9 +235,18 @@
 }
 
 .zoom-btn-prev {
-    left: 2rem;
+    left: 0.35rem;
 }
 
 .zoom-btn-next {
-    right: 2rem;
+    right: 0.35rem;
+}
+
+@media (max-width: 768px) {
+    .carousel-btn {
+        display: none;
+    }
+    .zoom-btn {
+        display: none;
+    }
 }

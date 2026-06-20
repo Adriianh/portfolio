@@ -5,6 +5,7 @@ import { ProjectRepositoryImpl } from "../data/repositories/ProjectRepositoryImp
 import { AllProjectsSpec } from "../domain/specs/ProjectSpecs";
 import type { Project } from "../domain/entities/Project";
 import { motion } from "framer-motion";
+import { useRef } from "react";
 import "../styles/project-detail.css";
 
 const baseUrl = import.meta.env.BASE_URL;
@@ -63,6 +64,20 @@ export function ProjectDetailPage() {
         }
     }, [currentScreenshots.length]);
 
+    const touchStartX = useRef(0);
+
+    function handleTouchStart(e: React.TouchEvent) {
+        touchStartX.current = e.touches[0].clientX;
+    }
+
+    function handleTouchEnd(e: React.TouchEvent) {
+        const diff = touchStartX.current - e.changedTouches[0].clientX;
+        if (Math.abs(diff) > 50) {
+            if (diff > 0) nextImg();
+            else prevImg();
+        }
+    }
+
     if (notFound) {
         return (
             <motion.section
@@ -99,7 +114,10 @@ export function ProjectDetailPage() {
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.6, ease: "easeOut" }}
         >
-            <button className="btn btn-outline" onClick={() => navigate(-1)}>
+            <button
+                className="btn btn-outline detail-back-btn"
+                onClick={() => navigate(-1)}
+            >
                 ← back
             </button>
 
@@ -141,7 +159,11 @@ export function ProjectDetailPage() {
                     )}
 
                     <div className="detail-carousel">
-                        <div className="carousel-viewport">
+                        <div
+                            className="carousel-viewport"
+                            onTouchStart={handleTouchStart}
+                            onTouchEnd={handleTouchEnd}
+                        >
                             <img
                                 src={currentScreenshots[imgIndex]}
                                 alt={`${project.title} screenshot ${imgIndex + 1}`}
@@ -229,7 +251,12 @@ export function ProjectDetailPage() {
             </div>
 
             {zoomed && (
-                <div className="zoom-overlay" onClick={() => setZoomed(false)}>
+                <div
+                    className="zoom-overlay"
+                    onClick={() => setZoomed(false)}
+                    onTouchStart={handleTouchStart}
+                    onTouchEnd={handleTouchEnd}
+                >
                     <button
                         className="zoom-close"
                         onClick={() => setZoomed(false)}
