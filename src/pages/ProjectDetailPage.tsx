@@ -16,6 +16,8 @@ export function ProjectDetailPage() {
     const [notFound, setNotFound] = useState(false);
     const [imgIndex, setImgIndex] = useState(0);
     const [platform, setPlatform] = useState("");
+    const [zoomed, setZoomed] = useState(false);
+    const [zoomedIn, setZoomedIn] = useState(false);
 
     useEffect(() => {
         const repo = new ProjectRepositoryImpl(baseUrl);
@@ -29,6 +31,37 @@ export function ProjectDetailPage() {
             }
         });
     }, [slug]);
+
+    const availablePlatforms = project
+        ? Object.entries(project.screenshots).filter(
+              ([, imgs]) => imgs.length > 0,
+          )
+        : [];
+    const currentPlatform = project
+        ? availablePlatforms.some(([k]) => k === platform)
+            ? platform
+            : (availablePlatforms[0]?.[0] ?? "")
+        : "";
+    const currentScreenshots = project?.screenshots?.[currentPlatform] ?? [];
+
+    function prevImg() {
+        setImgIndex((i) => (i === 0 ? currentScreenshots.length - 1 : i - 1));
+    }
+    function nextImg() {
+        setImgIndex((i) => (i === currentScreenshots.length - 1 ? 0 : i + 1));
+    }
+
+    useEffect(() => {
+        function handleKey(e: KeyboardEvent) {
+            if (e.key === "Escape") setZoomed(false);
+            if (e.key === "ArrowLeft" && zoomed) prevImg();
+            if (e.key === "ArrowRight" && zoomed) nextImg();
+        }
+        if (currentScreenshots.length > 0) {
+            window.addEventListener("keydown", handleKey);
+            return () => window.removeEventListener("keydown", handleKey);
+        }
+    }, [currentScreenshots.length]);
 
     if (notFound) {
         return (
@@ -46,22 +79,6 @@ export function ProjectDetailPage() {
 
     if (!project) {
         return <div className="page-loading">Loading...</div>;
-    }
-
-    const availablePlatforms = Object.entries(project.screenshots).filter(
-        ([, imgs]) => imgs.length > 0,
-    );
-    const currentPlatform = availablePlatforms.some(([k]) => k === platform)
-        ? platform
-        : (availablePlatforms[0]?.[0] ?? "");
-    const currentScreenshots = project.screenshots[currentPlatform] ?? [];
-
-    function prevImg() {
-        setImgIndex((i) => (i === 0 ? currentScreenshots.length - 1 : i - 1));
-    }
-
-    function nextImg() {
-        setImgIndex((i) => (i === currentScreenshots.length - 1 ? 0 : i + 1));
     }
 
     const allTechs = [...project.programmingLanguages, ...project.technologies];
@@ -119,6 +136,8 @@ export function ProjectDetailPage() {
                             <img
                                 src={currentScreenshots[imgIndex]}
                                 alt={`${project.title} screenshot ${imgIndex + 1}`}
+                                onClick={() => setZoomed(true)}
+                                style={{ cursor: "zoom-in" }}
                             />
                             {currentScreenshots.length > 1 && (
                                 <>
@@ -199,6 +218,52 @@ export function ProjectDetailPage() {
                     </a>
                 )}
             </div>
+
+            {zoomed && (
+                <div className="zoom-overlay" onClick={() => setZoomed(false)}>
+                    <button
+                        className="zoom-close"
+                        onClick={() => setZoomed(false)}
+                    >
+                        ×
+                    </button>
+                    <img
+                        src={currentScreenshots[imgIndex]}
+                        className={`zoom-image ${zoomedIn ? "zoomed" : ""}`}
+                        onClick={(e) => {
+                            e.stopPropagation();
+                            setZoomedIn(!zoomedIn);
+                        }}
+                        style={{ cursor: zoomedIn ? "zoom-out" : "zoom-in" }}
+                    />
+                    <span className="zoom-counter">
+                        {imgIndex + 1} / {currentScreenshots.length}
+                    </span>
+
+                    {currentScreenshots.length > 1 && (
+                        <>
+                            <button
+                                className="zoom-btn zoom-btn-prev"
+                                onClick={(e) => {
+                                    e.stopPropagation();
+                                    prevImg();
+                                }}
+                            >
+                                ‹
+                            </button>
+                            <button
+                                className="zoom-btn zoom-btn-next"
+                                onClick={(e) => {
+                                    e.stopPropagation();
+                                    nextImg();
+                                }}
+                            >
+                                ›
+                            </button>
+                        </>
+                    )}
+                </div>
+            )}
         </motion.section>
     );
 }
