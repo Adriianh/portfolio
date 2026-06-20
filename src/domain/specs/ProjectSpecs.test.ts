@@ -25,7 +25,7 @@ describe("Domain Architecture: Specification Pattern Unit Tests", () => {
         false,
         "large",
         "This is a long description of the frontend project.",
-        ["screenshot1.png", "screenshot2.png"],
+        {},
         "https://demo-url.com",
         ["Learned about state management", "Improved CSS skills"],
     );
@@ -45,7 +45,7 @@ describe("Domain Architecture: Specification Pattern Unit Tests", () => {
         true,
         "medium",
         "This is a long description of the desktop project.",
-        ["screenshot3.png"],
+        {},
         "https://demo-url-desktop.com",
         ["Learned about desktop development", "Improved C# skills"],
     );

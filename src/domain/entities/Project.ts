@@ -19,7 +19,7 @@ export class Project {
         public readonly featured: boolean,
         public readonly category: "small" | "medium" | "large",
         public readonly longDescription: string,
-        public readonly screenshots: string[],
+        public readonly screenshots: Record<string, string[]>,
         public readonly demoUrl: string | null,
         public readonly learnings: string[],
     ) {}

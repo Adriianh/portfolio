@@ -3,7 +3,7 @@ const farmacontrol = import.meta.glob<string>(
     { eager: true, query: "?url", import: "default" },
 );
 
-const melo = import.meta.glob<string>("../assets/screenshots/melo/*.png", {
+const melo = import.meta.glob<string>("../assets/screenshots/melo/**/*.png", {
     eager: true,
     query: "?url",
     import: "default",
@@ -14,8 +14,16 @@ const portfolio = import.meta.glob<string>(
     { eager: true, query: "?url", import: "default" },
 );
 
-export const screenshotsMap: Record<string, string[]> = {
-    farmacontrol: Object.values(farmacontrol),
-    melo: Object.values(melo),
-    portfolio: Object.values(portfolio),
+export const screenshotsMap: Record<string, Record<string, string[]>> = {
+    farmacontrol: {
+        default: Object.values(farmacontrol),
+    },
+    melo: {
+        tui: Object.values(melo).filter((url) => url.includes("/tui/")),
+        mobile: [],
+        desktop: [],
+    },
+    portfolio: {
+        default: Object.values(portfolio),
+    },
 };

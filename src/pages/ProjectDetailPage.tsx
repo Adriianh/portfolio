@@ -15,6 +15,7 @@ export function ProjectDetailPage() {
     const [project, setProject] = useState<Project | null>(null);
     const [notFound, setNotFound] = useState(false);
     const [imgIndex, setImgIndex] = useState(0);
+    const [platform, setPlatform] = useState("");
 
     useEffect(() => {
         const repo = new ProjectRepositoryImpl(baseUrl);
@@ -47,16 +48,20 @@ export function ProjectDetailPage() {
         return <div className="page-loading">Loading...</div>;
     }
 
+    const availablePlatforms = Object.entries(project.screenshots).filter(
+        ([, imgs]) => imgs.length > 0,
+    );
+    const currentPlatform = availablePlatforms.some(([k]) => k === platform)
+        ? platform
+        : (availablePlatforms[0]?.[0] ?? "");
+    const currentScreenshots = project.screenshots[currentPlatform] ?? [];
+
     function prevImg() {
-        setImgIndex((i) =>
-            i === 0 ? project!!.screenshots.length - 1 : i - 1,
-        );
+        setImgIndex((i) => (i === 0 ? currentScreenshots.length - 1 : i - 1));
     }
 
     function nextImg() {
-        setImgIndex((i) =>
-            i === project!!.screenshots.length - 1 ? 0 : i + 1,
-        );
+        setImgIndex((i) => (i === currentScreenshots.length - 1 ? 0 : i + 1));
     }
 
     const allTechs = [...project.programmingLanguages, ...project.technologies];
@@ -88,16 +93,34 @@ export function ProjectDetailPage() {
                 </>
             )}
 
-            {project.screenshots.length > 0 && (
+            {currentScreenshots.length > 0 && (
                 <>
                     <h3>Screenshots</h3>
+
+                    {availablePlatforms.length > 1 && (
+                        <div className="platform-tabs">
+                            {availablePlatforms.map(([key]) => (
+                                <button
+                                    key={key}
+                                    className={`platform-tab ${key === platform ? "active" : ""}`}
+                                    onClick={() => {
+                                        setPlatform(key);
+                                        setImgIndex(0);
+                                    }}
+                                >
+                                    {key}
+                                </button>
+                            ))}
+                        </div>
+                    )}
+
                     <div className="detail-carousel">
                         <div className="carousel-viewport">
                             <img
-                                src={project.screenshots[imgIndex]}
+                                src={currentScreenshots[imgIndex]}
                                 alt={`${project.title} screenshot ${imgIndex + 1}`}
                             />
-                            {project.screenshots.length > 1 && (
+                            {currentScreenshots.length > 1 && (
                                 <>
                                     <button
                                         className="carousel-btn carousel-prev"
@@ -114,9 +137,9 @@ export function ProjectDetailPage() {
                                 </>
                             )}
                         </div>
-                        {project.screenshots.length > 1 && (
+                        {currentScreenshots.length > 1 && (
                             <div className="carousel-dots">
-                                {project.screenshots.map((_, i) => (
+                                {currentScreenshots.map((_, i) => (
                                     <button
                                         key={i}
                                         className={`carousel-dot ${i === imgIndex ? "active" : ""}`}
