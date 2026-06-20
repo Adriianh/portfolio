@@ -1,3 +1,5 @@
+import { screenshotsMap } from "./screenshots";
+
 export const projectsData = [
     {
         id: "farmacontrol",
@@ -27,7 +29,7 @@ export const projectsData = [
         category: "large" as const,
         longDescription:
             "A domain-driven pharmacy management and Point of Sale (POS) system designed to handle complex pharmaceutical operations, batch-tracked inventories, and rule-based user workflows.",
-        screenshots: [],
+        screenshots: screenshotsMap.farmacontrol,
         demoUrl: null,
         learnings: [],
     },
@@ -58,7 +60,7 @@ export const projectsData = [
         category: "large" as const,
         longDescription:
             "A high-performance, lightweight audio player featuring a dual-experience workflow with an interactive TUI, an immediate CLI, and a background processing daemon.",
-        screenshots: [],
+        screenshots: screenshotsMap.melo,
         demoUrl: null,
         learnings: [],
     },
@@ -84,7 +86,7 @@ export const projectsData = [
         category: "medium" as const,
         longDescription:
             "A zero-framework, highly optimized frontend portfolio built to showcase pure software architecture principles, design patterns, and complete separation of concerns.",
-        screenshots: [],
+        screenshots: screenshotsMap.portfolio,
         demoUrl: "https://adriianh.github.io/portfolio/",
         learnings: [
             "Mastered advanced TypeScript features and patterns for state management.",

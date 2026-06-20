@@ -14,6 +14,7 @@ export function ProjectDetailPage() {
     const navigate = useNavigate();
     const [project, setProject] = useState<Project | null>(null);
     const [notFound, setNotFound] = useState(false);
+    const [imgIndex, setImgIndex] = useState(0);
 
     useEffect(() => {
         const repo = new ProjectRepositoryImpl(baseUrl);
@@ -46,6 +47,18 @@ export function ProjectDetailPage() {
         return <div className="page-loading">Loading...</div>;
     }
 
+    function prevImg() {
+        setImgIndex((i) =>
+            i === 0 ? project!!.screenshots.length - 1 : i - 1,
+        );
+    }
+
+    function nextImg() {
+        setImgIndex((i) =>
+            i === project!!.screenshots.length - 1 ? 0 : i + 1,
+        );
+    }
+
     const allTechs = [...project.programmingLanguages, ...project.technologies];
 
     return (
@@ -59,27 +72,12 @@ export function ProjectDetailPage() {
                 ← back
             </button>
 
-            <h1>{project.title}</h1>
-            <span className="detail-badge">{project.interfaceType}</span>
-
-            {project.screenshots.length > 0 && (
-                <>
-                    <h3>Screenshots</h3>
-                    <div className="detail-gallery">
-                        {project.screenshots.map((src, i) => (
-                            <img
-                                key={i}
-                                src={src}
-                                alt={`${project.title} screenshot ${i + 1}`}
-                            />
-                        ))}
-                    </div>
-                </>
-            )}
-
             {project.previewUrl && (
                 <img src={project.previewUrl} alt={project.title} />
             )}
+
+            <h1>{project.title}</h1>
+            <span className="detail-badge">{project.interfaceType}</span>
 
             <p>{project.description}</p>
 
@@ -90,6 +88,46 @@ export function ProjectDetailPage() {
                 </>
             )}
 
+            {project.screenshots.length > 0 && (
+                <>
+                    <h3>Screenshots</h3>
+                    <div className="detail-carousel">
+                        <div className="carousel-viewport">
+                            <img
+                                src={project.screenshots[imgIndex]}
+                                alt={`${project.title} screenshot ${imgIndex + 1}`}
+                            />
+                            {project.screenshots.length > 1 && (
+                                <>
+                                    <button
+                                        className="carousel-btn carousel-prev"
+                                        onClick={prevImg}
+                                    >
+                                        ‹
+                                    </button>
+                                    <button
+                                        className="carousel-btn carousel-next"
+                                        onClick={nextImg}
+                                    >
+                                        ›
+                                    </button>
+                                </>
+                            )}
+                        </div>
+                        {project.screenshots.length > 1 && (
+                            <div className="carousel-dots">
+                                {project.screenshots.map((_, i) => (
+                                    <button
+                                        key={i}
+                                        className={`carousel-dot ${i === imgIndex ? "active" : ""}`}
+                                        onClick={() => setImgIndex(i)}
+                                    />
+                                ))}
+                            </div>
+                        )}
+                    </div>
+                </>
+            )}
             <h3>Technical Challenge</h3>
             <p>{project.technicalChallenge}</p>
 

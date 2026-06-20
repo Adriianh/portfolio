@@ -25,7 +25,7 @@ export class ProjectRepositoryImpl implements ProjectRepository {
                     item.featured,
                     item.category,
                     item.longDescription,
-                    item.screenshots || [],
+                    item.screenshots,
                     item.demoUrl || null,
                     item.learnings || [],
                 ),
