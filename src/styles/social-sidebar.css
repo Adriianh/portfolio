@@ -39,3 +39,54 @@
     color: var(--accent);
     transform: translateX(3px);
 }
+
+.social-sidebar__icon-btn {
+    background: none;
+    border: none;
+    color: var(--muted);
+    cursor: pointer;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.2s;
+    font-size: 1.2rem;
+}
+
+.social-sidebar__icon-btn:hover {
+    color: var(--accent);
+}
+
+.social-sidebar__toast {
+    position: absolute;
+    left: calc(100% + 8px);
+    top: 50%;
+    transform: translateY(-50%);
+    background: var(--accent);
+    color: #0f0e17;
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    white-space: nowrap;
+    animation: fadeInOut 1.5s ease forwards;
+}
+
+@keyframes fadeInOut {
+    0% {
+        opacity: 0;
+        transform: translateY(-50%) translateX(-4px);
+    }
+    20% {
+        opacity: 1;
+        transform: translateY(-50%) translateX(0);
+    }
+    80% {
+        opacity: 1;
+        transform: translateY(-50%) translateX(0);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-50%) translateX(-4px);
+    }
+}
