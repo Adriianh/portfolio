@@ -56,7 +56,16 @@ export default function App() {
                 <SocialSidebar />
                 <Navbar />
                 <Suspense
-                    fallback={<div className="page-loading">Loading...</div>}
+                    fallback={
+                        <div className="skeleton">
+                            <div className="skeleton-banner" />
+                            <div className="skeleton-line short" />
+                            <div className="skeleton-line medium" />
+                            <div className="skeleton-line" />
+                            <div className="skeleton-line medium" />
+                            <div className="skeleton-line short" />
+                        </div>
+                    }
                 >
                     <AppRoutes />
                 </Suspense>

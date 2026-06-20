@@ -78,7 +78,16 @@ export function ProjectDetailPage() {
     }
 
     if (!project) {
-        return <div className="page-loading">Loading...</div>;
+        return (
+            <div className="skeleton">
+                <div className="skeleton-banner" />
+                <div className="skeleton-line short" />
+                <div className="skeleton-line medium" />
+                <div className="skeleton-line" />
+                <div className="skeleton-line medium" />
+                <div className="skeleton-line short" />
+            </div>
+        );
     }
 
     const allTechs = [...project.programmingLanguages, ...project.technologies];
