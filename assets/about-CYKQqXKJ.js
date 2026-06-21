@@ -1,1 +1,0 @@
-var e=`/portfolio/assets/photo.png`;export{e as t};

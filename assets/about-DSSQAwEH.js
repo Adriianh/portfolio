@@ -1,0 +1,1 @@
+var e=`/portfolio/assets/photo.webp`;export{e as t};
