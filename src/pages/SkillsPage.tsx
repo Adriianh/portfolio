@@ -1,4 +1,5 @@
 import { SectionLabel } from "../components/ui/SectionLabel";
+import { GitHubStats } from "../components/sections/GitHubStats.tsx";
 import { motion } from "framer-motion";
 import "../styles/skills.css";
 
@@ -202,6 +203,8 @@ export function SkillsPage() {
                     ))}
                 </div>
             </div>
+
+            <GitHubStats username="Adriianh" />
         </motion.section>
     );
 }
