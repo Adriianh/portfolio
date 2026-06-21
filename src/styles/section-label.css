@@ -46,6 +46,22 @@
     color: var(--accent);
 }
 
+.section-label--subsection {
+    padding: 16px 0 0 32px;
+    margin-bottom: 1.25rem;
+    gap: 24px;
+}
+
+.section-label--subsection .section-label__title {
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--muted);
+}
+
+.section-label--subsection .section-label__line {
+    border-top-color: rgba(255, 255, 255, 0.08);
+}
+
 @media (max-width: 768px) {
     .section-label {
         padding: 24px 0 0;
@@ -54,5 +70,14 @@
 
     .section-label__title {
         font-size: 1.25rem;
+    }
+
+    .section-label--subsection {
+        padding: 12px 0 0;
+        gap: 12px;
+    }
+
+    .section-label--subsection .section-label__title {
+        font-size: 0.9rem;
     }
 }

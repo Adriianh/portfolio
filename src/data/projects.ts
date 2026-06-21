@@ -94,4 +94,62 @@ export const projectsData = [
             "Learned to implement responsive design principles and accessibility standards.",
         ],
     },
+    {
+        id: "todo-cli",
+        title: "Todo CLI",
+        description:
+            "A simple yet powerful command-line tool to manage your tasks.",
+        programmingLanguages: ["Kotlin"],
+        technologies: ["CLI"],
+        repositoryUrl: "https://github.com/Adriianh/todo-cli",
+        previewUrl: null,
+        interfaceType: "CLI" as const,
+        status: "Production Ready",
+        features: [
+            "Add, list, complete, and delete tasks from the terminal.",
+            "Persistent storage using local file-based database.",
+            "Clean and intuitive command syntax with help flags.",
+        ],
+        technicalChallenge:
+            "Designing a clean CLI ergonomics with intuitive subcommand routing while keeping the codebase minimal and dependency-free.",
+        featured: false,
+        category: "small" as const,
+        longDescription:
+            "A lightweight task manager built for the terminal. Focus on simplicity and fast task management without leaving the command line.",
+        screenshots: {},
+        demoUrl: null,
+        learnings: [
+            "Practiced CLI argument parsing and subcommand routing patterns.",
+            "Reinforced Kotlin idioms for immutable data structures and sealed classes.",
+        ],
+    },
+    {
+        id: "currency-exchange-cli",
+        title: "Currency Exchange CLI",
+        description:
+            "A simple yet powerful command-line tool for checking currency exchange rates.",
+        programmingLanguages: ["Kotlin"],
+        technologies: ["CLI", "HTTP API"],
+        repositoryUrl: "https://github.com/Adriianh/currency-exchange-cli",
+        previewUrl: null,
+        interfaceType: "CLI" as const,
+        status: "Production Ready",
+        features: [
+            "Real-time exchange rates for multiple currency pairs.",
+            "Clean formatted output with rate, change, and timestamp.",
+            "Support for base currency conversion and amount calculation.",
+        ],
+        technicalChallenge:
+            "Integrating with external exchange rate API while ensuring graceful error handling for network failures and rate limits.",
+        featured: false,
+        category: "small" as const,
+        longDescription:
+            "A terminal-based currency converter that fetches live exchange rates. Type a command and get instant conversions without opening a browser.",
+        screenshots: {},
+        demoUrl: null,
+        learnings: [
+            "Practiced HTTP client usage and JSON parsing in Kotlin.",
+            "Learned to handle API errors and edge cases in CLI contexts.",
+        ],
+    },
 ];

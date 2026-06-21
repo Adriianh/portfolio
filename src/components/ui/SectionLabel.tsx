@@ -5,11 +5,17 @@ interface Props {
     id: string;
     label: string;
     showViewAll?: boolean;
+    variant?: "section" | "subsection";
 }
 
-export function SectionLabel({ id, label, showViewAll = false }: Props) {
+export function SectionLabel({
+    id,
+    label,
+    showViewAll = false,
+    variant = "section",
+}: Props) {
     return (
-        <div id={id} className="section-label">
+        <div id={id} className={`section-label section-label--${variant}`}>
             <div className="section-label__left">
                 <span className="section-label__title">
                     <span className="section-label__hash">#</span>
@@ -17,7 +23,7 @@ export function SectionLabel({ id, label, showViewAll = false }: Props) {
                 </span>
                 <hr className="section-label__line" />
             </div>
-            {showViewAll && (
+            {showViewAll && variant === "section" && (
                 <Link to="/works" className="section-label__viewall">
                     View all ~~&gt;
                 </Link>

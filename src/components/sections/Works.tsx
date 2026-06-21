@@ -64,6 +64,12 @@ export function Works() {
     const uniqueLanguages = [
         ...new Set(projects.flatMap((p) => p.programmingLanguages)),
     ];
+    const grouped = filtered.reduce<Record<string, Project[]>>((acc, p) => {
+        if (!acc[p.category]) acc[p.category] = [];
+        acc[p.category].push(p);
+
+        return acc;
+    }, {});
 
     return (
         <motion.section
@@ -75,7 +81,6 @@ export function Works() {
             id="works"
         >
             <SectionLabel id="works" label="works" />
-
             <div className="works-filters">
                 <input
                     type="text"
@@ -109,34 +114,41 @@ export function Works() {
                     ))}
                 </select>
             </div>
-
             {!isLoading && filtered.length === 0 && (
-                <p className="projects-loading">loading projects...</p>
+                <p className="projects-loading">no projects found...</p>
             )}
             {error && <p className="projects-error">{error}</p>}
-
-            <div className="projects-grid">
-                {filtered.map((p, i) => (
-                    <motion.div
-                        key={p.id}
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        transition={{
-                            duration: 0.4,
-                            ease: "easeOut",
-                            delay: i * 0.1,
-                        }}
-                        viewport={{ once: true }}
-                    >
-                        <ProjectCard
-                            project={p}
-                            onSelect={(project) =>
-                                navigate(`/works/${project.id}`)
-                            }
-                        />
-                    </motion.div>
-                ))}
-            </div>
+            {Object.entries(grouped).map(([category, projects]) => (
+                <div key={category} className="works-category">
+                    <SectionLabel
+                        id={`works-${category}`}
+                        label={category}
+                        variant="subsection"
+                    />
+                    <div className="projects-grid">
+                        {projects.map((p, i) => (
+                            <motion.div
+                                key={p.id}
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                transition={{
+                                    duration: 0.4,
+                                    ease: "easeOut",
+                                    delay: i * 0.1,
+                                }}
+                                viewport={{ once: true }}
+                            >
+                                <ProjectCard
+                                    project={p}
+                                    onSelect={(project) =>
+                                        navigate(`/works/${project.id}`)
+                                    }
+                                />
+                            </motion.div>
+                        ))}
+                    </div>
+                </div>
+            ))}{" "}
         </motion.section>
     );
 }
