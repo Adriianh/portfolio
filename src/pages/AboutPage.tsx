@@ -1,54 +1,9 @@
 import { Link } from "react-router-dom";
 import { SectionLabel } from "../components/ui/SectionLabel";
 import { motion } from "framer-motion";
+import { useTranslation } from "react-i18next";
 import photo from "/assets/photo.webp";
 import "../styles/about.css";
-
-const timeline = [
-    {
-        year: "2025",
-        title: "Software Developer",
-        subtitle: "Active freelance & open source",
-        desc: "Building full-stack applications. Focused on clean architecture and maintainable systems.",
-    },
-    {
-        year: "2024",
-        title: "Deep Dive into Software Development",
-        subtitle: "Backend, frontend & systems design",
-        desc: "Started taking development seriously — explored backend architecture, frontend frameworks, and system design principles.",
-    },
-    {
-        year: "2023",
-        title: "Programming as a Hobby",
-        subtitle: "First real projects",
-        desc: "Began building personal projects and exploring different areas of software development.",
-    },
-    {
-        year: "2022",
-        title: "Started Programming",
-        subtitle: "The beginning",
-        desc: "Wrote my first lines of code out of curiosity. Started with a simple Minecraft plugin and immediately fell in love with the problem-solving aspect.",
-    },
-];
-
-const funFacts = [
-    "I can debug code faster after a good cup of coffee",
-    "I'm convinced that tabs > spaces (just kidding... or am I?)",
-    "I've spent more time configuring my editor than actually coding",
-    "My browser usually has 30+ tabs open — all of which are 'important'",
-    "I once fixed a bug by adding a semicolon. True story.",
-    "I believe the best code is the code you don't have to write",
-];
-
-const hobbies = [
-    { emoji: "⚡", label: "Electronics & circuit design" },
-    { emoji: "🚲️", label: "Riding around the city" },
-    { emoji: "📚", label: "Reading sci-fi & tech blogs" },
-    { emoji: "🎮", label: "Gaming (when not coding)" },
-    { emoji: "🎵", label: "Listening to any music" },
-    { emoji: "🍳", label: "Cooking (and eating) new recipes" },
-    { emoji: "🪴", label: "Taking care of my plants" },
-];
 
 function DotGrid({
     x,
@@ -96,6 +51,29 @@ function AboutDeco() {
 }
 
 export function AboutPage() {
+    const { t } = useTranslation();
+
+    interface TimelineItem {
+        year: string;
+        title: string;
+        subtitle: string;
+        desc: string;
+    }
+
+    const timeline = t("about.timeline_items", {
+        returnObjects: true,
+    }) as TimelineItem[];
+
+    const funFacts = t("about.fun_facts_list", {
+        returnObjects: true,
+    }) as string[];
+
+    const hobbies = t("about.hobbies_list", {
+        returnObjects: true,
+    }) as string[];
+
+    const hobbyEmojis = ["⚡", "🚲️", "📚", "🎮", "🎵", "🍳", "🪴"];
+
     return (
         <motion.section
             initial={{ opacity: 0, y: 40 }}
@@ -105,25 +83,15 @@ export function AboutPage() {
             viewport={{ once: true }}
             id="about"
         >
-            <SectionLabel id="about" label="about" />
+            <SectionLabel id="about" label={t("about.section_label")} />
 
             <div className="about-layout">
                 <div className="about-text">
-                    <p className="about-greeting">Hello, I'm Adrián</p>
-                    <p className="about-desc">
-                        I'm a software developer and electronic engineering
-                        student based in Guatemala. I started programming
-                        casually 3 years ago, and it became my main hobby about
-                        a year ago.
-                    </p>
-                    <p className="about-desc">
-                        I'm passionate about open source, clean architecture,
-                        and building maintainable systems. Outside of code, I
-                        enjoy electronics and circuit design — which pairs
-                        nicely with my software engineering mindset.
-                    </p>
+                    <p className="about-greeting">{t("about.greeting")}</p>
+                    <p className="about-desc">{t("about.bio_1")}</p>
+                    <p className="about-desc">{t("about.bio_2")}</p>
                     <Link to="/contact" className="btn btn-outline">
-                        get in touch →
+                        {t("about.get_in_touch")}
                     </Link>
                 </div>
 
@@ -136,7 +104,7 @@ export function AboutPage() {
             </div>
 
             <div className="about-timeline">
-                <h3 className="about-subtitle">/ timeline</h3>
+                <h3 className="about-subtitle">{t("about.timeline")}</h3>
                 <div className="timeline-list">
                     {timeline.map((item) => (
                         <div key={item.year} className="timeline-item">
@@ -154,7 +122,7 @@ export function AboutPage() {
             </div>
 
             <div className="about-facts">
-                <h3 className="about-subtitle">/ fun facts</h3>
+                <h3 className="about-subtitle">{t("about.fun_facts")}</h3>
                 <div className="facts-grid">
                     {funFacts.map((fact, i) => (
                         <div key={i} className="fact-card">
@@ -166,12 +134,14 @@ export function AboutPage() {
             </div>
 
             <div className="about-hobbies">
-                <h3 className="about-subtitle">/ when I'm not coding</h3>
+                <h3 className="about-subtitle">{t("about.hobbies")}</h3>
                 <div className="hobbies-grid">
-                    {hobbies.map((hobby) => (
-                        <div key={hobby.label} className="hobby-card">
-                            <span className="hobby-emoji">{hobby.emoji}</span>
-                            <span className="hobby-label">{hobby.label}</span>
+                    {hobbies.map((hobby, i) => (
+                        <div key={i} className="hobby-card">
+                            <span className="hobby-emoji">
+                                {hobbyEmojis[i]}
+                            </span>
+                            <span className="hobby-label">{hobby}</span>
                         </div>
                     ))}
                 </div>

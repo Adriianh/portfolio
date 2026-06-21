@@ -7,6 +7,7 @@ import {
     FaExternalLinkAlt,
 } from "react-icons/fa";
 import { VscGithub } from "react-icons/vsc";
+import { useTranslation } from "react-i18next";
 import "../../styles/github-stats.css";
 
 interface Props {
@@ -15,14 +16,18 @@ interface Props {
 
 export function GitHubStats({ username }: Props) {
     const { stats, isLoading, error } = useGitHubStats(username);
+    const { t } = useTranslation();
 
     if (isLoading) {
         return (
             <div className="github-stats">
                 <h3 className="github-stats__title">
-                    <VscGithub className="github-stats__icon" />/ github stats
+                    <VscGithub className="github-stats__icon" />
+                    {t("github_stats.title")}
                 </h3>
-                <p className="github-stats__loading">loading github stats...</p>
+                <p className="github-stats__loading">
+                    {t("github_stats.loading")}
+                </p>
             </div>
         );
     }
@@ -31,10 +36,11 @@ export function GitHubStats({ username }: Props) {
         return (
             <div className="github-stats">
                 <h3 className="github-stats__title">
-                    <VscGithub className="github-stats__icon" />/ github stats
+                    <VscGithub className="github-stats__icon" />
+                    {t("github_stats.title")}
                 </h3>
                 <p className="github-stats__error">
-                    {error || "could not load stats"}
+                    {error || t("github_stats.error")}
                 </p>
             </div>
         );
@@ -42,7 +48,7 @@ export function GitHubStats({ username }: Props) {
 
     return (
         <div className="github-stats">
-            <h3 className="skills-subtitle">/ github stats</h3>
+            <h3 className="skills-subtitle">{t("github_stats.title")}</h3>
 
             <div className="github-stats__counters">
                 <div className="github-stat-card">
@@ -50,28 +56,34 @@ export function GitHubStats({ username }: Props) {
                     <span className="github-stat-card__value">
                         {stats.totalStars}
                     </span>
-                    <span className="github-stat-card__label">stars</span>
+                    <span className="github-stat-card__label">
+                        {t("github_stats.stars")}
+                    </span>
                 </div>
                 <div className="github-stat-card">
                     <FaCodeBranch className="github-stat-card__icon" />
                     <span className="github-stat-card__value">
                         {stats.publicRepos}
                     </span>
-                    <span className="github-stat-card__label">repos</span>
+                    <span className="github-stat-card__label">
+                        {t("github_stats.repos")}
+                    </span>
                 </div>
                 <div className="github-stat-card">
                     <FaUsers className="github-stat-card__icon" />
                     <span className="github-stat-card__value">
                         {stats.followers}
                     </span>
-                    <span className="github-stat-card__label">followers</span>
+                    <span className="github-stat-card__label">
+                        {t("github_stats.followers")}
+                    </span>
                 </div>
             </div>
 
             <div className="github-stats__languages">
                 <SectionLabel
                     id="github-languages"
-                    label="top languages"
+                    label={t("github_stats.top_languages")}
                     variant="subsection"
                 />{" "}
                 <div className="github-stats__lang-bars">
@@ -99,7 +111,7 @@ export function GitHubStats({ username }: Props) {
             <div className="github-stats__latest">
                 <SectionLabel
                     id="github-repos"
-                    label="latest repos"
+                    label={t("github_stats.latest_repos")}
                     variant="subsection"
                 />{" "}
                 <div className="github-stats__repo-list">

@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import type { Project } from "../../domain/entities/Project";
 import "../../styles/project-modal.css";
 
@@ -9,6 +10,7 @@ interface Props {
 
 export function ProjectModal({ project, onClose }: Props) {
     const navigate = useNavigate();
+    const { t } = useTranslation();
 
     return (
         <div className="modal-overlay" onClick={onClose}>
@@ -23,7 +25,7 @@ export function ProjectModal({ project, onClose }: Props) {
                 <span className="modal-badge">{project.interfaceType}</span>
                 <p>{project.description}</p>
 
-                <h4>features</h4>
+                <h4>{t("projects.modal.features")}</h4>
                 <ul>
                     {project.features.map((f, i) => (
                         <li key={i}>{f}</li>
@@ -46,7 +48,7 @@ export function ProjectModal({ project, onClose }: Props) {
                             navigate(`/works/${project.id}`);
                         }}
                     >
-                        view full details
+                        {t("projects.modal.view_details")}
                     </button>
 
                     <a
@@ -54,7 +56,7 @@ export function ProjectModal({ project, onClose }: Props) {
                         target="_blank"
                         className="btn btn-outline"
                     >
-                        view source
+                        {t("projects.modal.view_source")}
                     </a>
                 </div>
             </div>

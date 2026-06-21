@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { GetProjects } from "../../domain/use-cases/GetProjects";
 import { ProjectRepositoryImpl } from "../../data/repositories/ProjectRepositoryImpl";
 import { ProjectCard } from "../ui/ProjectCard";
@@ -14,6 +15,8 @@ const baseUrl = import.meta.env.BASE_URL;
 export function Projects() {
     const [projects, setProjects] = useState<Project[]>([]);
     const [selected, setSelected] = useState<Project | null>(null);
+
+    const { t } = useTranslation();
 
     useEffect(() => {
         const repo = new ProjectRepositoryImpl(baseUrl);
@@ -34,7 +37,11 @@ export function Projects() {
             viewport={{ once: true }}
             id="works"
         >
-            <SectionLabel id="works" label="works" showViewAll />
+            <SectionLabel
+                id="works"
+                label={t("projects.section_label")}
+                showViewAll
+            />
 
             <div className="projects-grid">
                 {featured.map((p, i) => (

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { GetProjects } from "../../domain/use-cases/GetProjects";
 import { ProjectRepositoryImpl } from "../../data/repositories/ProjectRepositoryImpl";
 import { ProjectCard } from "../ui/ProjectCard";
@@ -26,6 +27,7 @@ export function Works() {
     const [error, setError] = useState<string | null>(null);
 
     const navigate = useNavigate();
+    const { t } = useTranslation();
 
     useEffect(() => {
         const repo = new ProjectRepositoryImpl(baseUrl);
@@ -37,7 +39,7 @@ export function Works() {
                 setIsLoading(false);
             })
             .catch((err) => {
-                setError(err.message || "Failed to load projects");
+                setError(err.message || t("works.load_error"));
                 setIsLoading(false);
             });
     }, []);
@@ -71,6 +73,12 @@ export function Works() {
         return acc;
     }, {});
 
+    const categoryLabels: Record<string, string> = {
+        large: t("works.category_large"),
+        medium: t("works.category_medium"),
+        small: t("works.category_small"),
+    };
+
     return (
         <motion.section
             initial={{ opacity: 0, y: 40 }}
@@ -80,11 +88,11 @@ export function Works() {
             viewport={{ once: true }}
             id="works"
         >
-            <SectionLabel id="works" label="works" />
+            <SectionLabel id="works" label={t("works.section_label")} />
             <div className="works-filters">
                 <input
                     type="text"
-                    placeholder="search projects..."
+                    placeholder={t("works.search_placeholder")}
                     className="form-input"
                     value={search}
                     onChange={(e) => setSearch(e.target.value)}
@@ -94,7 +102,7 @@ export function Works() {
                     value={platform}
                     onChange={(e) => setPlatform(e.target.value)}
                 >
-                    <option value="All">all platforms</option>
+                    <option value="All">{t("works.all_platforms")}</option>
                     {uniquePlatforms.map((p) => (
                         <option key={p} value={p}>
                             {p}
@@ -106,7 +114,7 @@ export function Works() {
                     value={language}
                     onChange={(e) => setLanguage(e.target.value)}
                 >
-                    <option value="All">all languages</option>
+                    <option value="All">{t("works.all_languages")}</option>
                     {uniqueLanguages.map((l) => (
                         <option key={l} value={l}>
                             {l}
@@ -115,14 +123,14 @@ export function Works() {
                 </select>
             </div>
             {!isLoading && filtered.length === 0 && (
-                <p className="projects-loading">no projects found...</p>
+                <p className="projects-loading">{t("works.no_projects")}</p>
             )}
             {error && <p className="projects-error">{error}</p>}
             {Object.entries(grouped).map(([category, projects]) => (
                 <div key={category} className="works-category">
                     <SectionLabel
                         id={`works-${category}`}
-                        label={category}
+                        label={categoryLabels[category]}
                         variant="subsection"
                     />
                     <div className="projects-grid">

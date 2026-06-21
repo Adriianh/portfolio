@@ -1,5 +1,6 @@
 import { SectionLabel } from "../ui/SectionLabel";
 import { motion } from "framer-motion";
+import { useTranslation } from "react-i18next";
 import "../../styles/skills.css";
 
 const skills = {
@@ -95,6 +96,14 @@ function SkillsDeco() {
 }
 
 export function Skills() {
+    const { t } = useTranslation();
+    const categoryLabels: Record<string, string> = {
+        Languages: t("skills.languages"),
+        Databases: t("skills.databases"),
+        Tools: t("skills.tools"),
+        Frameworks: t("skills.frameworks"),
+    };
+
     return (
         <motion.section
             initial={{ opacity: 0, y: 40 }}
@@ -104,7 +113,7 @@ export function Skills() {
             viewport={{ once: true }}
             id="skills"
         >
-            <SectionLabel id="skills" label="skills" />
+            <SectionLabel id="skills" label={t("skills.section_label")} />
             <div className="skills-layout">
                 <div className="skills-deco">
                     <SkillsDeco />
@@ -113,7 +122,9 @@ export function Skills() {
                 <div className="skills-grid">
                     {Object.entries(skills).map(([category, items]) => (
                         <div key={category} className="skills-col">
-                            <h3 className="skills-col__title">{category}</h3>
+                            <h3 className="skills-col__title">
+                                {categoryLabels[category]}
+                            </h3>{" "}
                             <div className="skills-col__items">
                                 {items.map((item) => (
                                     <span

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { SectionLabel } from "../ui/SectionLabel";
 import { MdEmail } from "react-icons/md";
 import { FaLinkedin, FaGithub, FaTwitter, FaDiscord } from "react-icons/fa";
@@ -43,6 +44,7 @@ const items: ContactItem[] = [
 
 export function Contacts() {
     const [copied, setCopied] = useState(false);
+    const { t } = useTranslation();
 
     function copyToClipboard(text: string) {
         if (navigator.clipboard) {
@@ -82,21 +84,12 @@ export function Contacts() {
             viewport={{ once: true }}
             id="contact"
         >
-            <SectionLabel id="contact" label="contacts" />
+            <SectionLabel id="contact" label={t("contacts.section_label")} />
 
             <div className="contact-layout">
                 <div className="contact-text">
-                    <p className="contact-desc">
-                        I'm interested in freelance work, open source
-                        contributions, and full-time roles. If you have an
-                        opportunity that you think would be a good fit, please
-                        don't hesitate to reach out!
-                    </p>
-                    <p className="contact-desc">
-                        I'm always open to new opportunities and collaborations.
-                        Whether you have a project in mind, want to chat about
-                        tech, or just feel free to drop me a message.
-                    </p>
+                    <p className="contact-desc">{t("contacts.desc_1")}</p>
+                    <p className="contact-desc">{t("contacts.desc_2")}</p>
                 </div>
 
                 <div className="contact-card">
@@ -108,8 +101,10 @@ export function Contacts() {
                             onClick={() => handleClick(item)}
                             title={
                                 item.href
-                                    ? `Open ${item.label}`
-                                    : "Copy Discord username"
+                                    ? t("contacts.open_label", {
+                                          label: item.label,
+                                      })
+                                    : t("contacts.copy_discord")
                             }
                         >
                             <span className="contact-icon">
@@ -125,7 +120,9 @@ export function Contacts() {
             </div>
 
             {copied && (
-                <div className="contact-toast">discord username copied!</div>
+                <div className="contact-toast">
+                    {t("contacts.discord_copied")}
+                </div>
             )}
         </motion.section>
     );

@@ -147,6 +147,26 @@ a {
     width: 80%;
 }
 
+.lang-toggle {
+    background: none;
+    border: 1px solid var(--border);
+    color: var(--muted);
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition:
+        color 0.2s,
+        border-color 0.2s;
+    font-weight: 600;
+}
+
+.lang-toggle:hover {
+    color: var(--accent);
+    border-color: var(--accent);
+}
+
 img {
     max-width: 100%;
     display: block;

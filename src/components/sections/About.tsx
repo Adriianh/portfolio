@@ -1,5 +1,6 @@
 import { SectionLabel } from "../ui/SectionLabel";
 import { motion } from "framer-motion";
+import { useTranslation } from "react-i18next";
 import photo from "/assets/photo.webp";
 import "../../styles/about.css";
 
@@ -49,6 +50,8 @@ function AboutDeco() {
 }
 
 export function About() {
+    const { t } = useTranslation();
+
     return (
         <motion.section
             initial={{ opacity: 0, y: 40 }}
@@ -58,25 +61,15 @@ export function About() {
             viewport={{ once: true }}
             id="about"
         >
-            <SectionLabel id="about" label="about" />
+            <SectionLabel id="about" label={t("about.section_label")} />
 
             <div className="about-layout">
                 <div className="about-text">
-                    <p className="about-greeting">Hello, I'm Adrián</p>
-                    <p className="about-desc">
-                        I'm a software developer and electronic engineering
-                        student based in Guatemala. I started programming
-                        casually 3 years ago, and it became my main hobby about
-                        a year ago.
-                    </p>
-                    <p className="about-desc">
-                        I'm passionate about open source, clean architecture,
-                        and building maintainable systems. Outside of code, I
-                        enjoy electronics and circuit design — which pairs
-                        nicely with my software engineering mindset.
-                    </p>
+                    <p className="about-greeting">{t("about.greeting")}</p>
+                    <p className="about-desc">{t("about.bio_1")}</p>
+                    <p className="about-desc">{t("about.bio_2")}</p>
                     <a href="#contact" className="btn btn-outline">
-                        get in touch →
+                        {t("about.get_in_touch")}
                     </a>
                 </div>
 

@@ -3,6 +3,7 @@ import { SectionLabel } from "../components/ui/SectionLabel";
 import { MdWavingHand, MdEmail } from "react-icons/md";
 import { FaLinkedin, FaGithub, FaTwitter, FaDiscord } from "react-icons/fa";
 import { motion } from "framer-motion";
+import { useTranslation } from "react-i18next";
 import type { IconType } from "react-icons";
 import "../styles/contacts.css";
 
@@ -41,28 +42,15 @@ const items: ContactItem[] = [
     { label: "Discord", value: "adriiianhh", icon: FaDiscord, href: null },
 ];
 
-const faqs = [
-    {
-        q: "Are you available for freelance work?",
-        a: "Yes! I'm currently open to freelance projects and collaborations. Send me an email and let's talk.",
-    },
-    {
-        q: "What's your preferred tech stack?",
-        a: "I'm most productive with TypeScript, React, and Node.js, but I'm always exploring new technologies.",
-    },
-    {
-        q: "Do you contribute to open source?",
-        a: "Absolutely. I believe in giving back to the community and regularly contribute to projects I use.",
-    },
-    {
-        q: "What's the best way to reach you?",
-        a: "Email and Discord are usually the best ways to get in touch. I'm pretty responsive on both platforms.",
-    },
-];
-
 export function ContactPage() {
     const [sent, setSent] = useState(false);
     const [copied, setCopied] = useState(false);
+
+    const { t } = useTranslation();
+    const faqs = t("contacts.faq_items", { returnObjects: true }) as {
+        q: string;
+        a: string;
+    }[];
 
     function handleSubmit(e: React.SubmitEvent<HTMLFormElement>) {
         e.preventDefault();
@@ -107,27 +95,19 @@ export function ContactPage() {
             viewport={{ once: true }}
             id="contact"
         >
-            <SectionLabel id="contact" label="contacts" />
+            <SectionLabel id="contact" label={t("contacts.section_label")} />
 
             <div className="contact-layout">
                 <div className="contact-text">
+                    <p className="contact-desc">{t("contacts.desc_1")}</p>
                     <p className="contact-desc">
-                        I'm interested in freelance work, open source
-                        contributions, and full-time roles. If you have an
-                        opportunity that you think would be a good fit, please
-                        don't hesitate to reach out!
-                    </p>
-                    <p className="contact-desc">
-                        I'm always open to new opportunities and collaborations.
-                        Whether you have a project in mind, want to chat about
-                        tech, or just want to say hi <MdWavingHand />, feel free
-                        to drop me a message.
+                        {t("contacts.desc_2")} <MdWavingHand />
                     </p>
 
                     <div className="contact-availability">
                         <span className="availability-dot" />
                         <span className="availability-text">
-                            available for freelance & full-time
+                            {t("contacts.available")}
                         </span>
                     </div>
                 </div>
@@ -141,8 +121,10 @@ export function ContactPage() {
                             onClick={() => handleClick(item)}
                             title={
                                 item.href
-                                    ? `Open ${item.label}`
-                                    : "Copy Discord username"
+                                    ? t("contacts.open_label", {
+                                          label: item.label,
+                                      })
+                                    : t("social.copy_discord")
                             }
                         >
                             <span className="contact-icon">
@@ -158,54 +140,54 @@ export function ContactPage() {
             </div>
 
             {copied && (
-                <div className="contact-toast">discord username copied!</div>
+                <div className="contact-toast">
+                    {t("contacts.discord_copied")}
+                </div>
             )}
 
             <div className="contact-form-section">
-                <h3 className="contact-subtitle">/ send a message</h3>
+                <h3 className="contact-subtitle">{t("contacts.form")}</h3>
                 {sent ? (
                     <div className="contact-form-sent">
-                        <p>
-                            thanks for reaching out! i'll get back to you soon.
-                        </p>
+                        <p>{t("contacts.success")}</p>
                     </div>
                 ) : (
                     <form className="contact-form" onSubmit={handleSubmit}>
                         <div className="form-row">
                             <input
                                 type="text"
-                                placeholder="name"
+                                placeholder={t("contacts.name")}
                                 className="form-input"
                                 required
                             />
                             <input
                                 type="email"
-                                placeholder="email"
+                                placeholder={t("contacts.email")}
                                 className="form-input"
                                 required
                             />
                         </div>
                         <input
                             type="text"
-                            placeholder="subject"
+                            placeholder={t("contacts.subject")}
                             className="form-input"
                             required
                         />
                         <textarea
-                            placeholder="message"
+                            placeholder={t("contacts.message")}
                             className="form-textarea"
                             rows={5}
                             required
                         />
                         <button type="submit" className="btn btn-primary">
-                            send message →
+                            {t("contacts.send")}
                         </button>
                     </form>
                 )}
             </div>
 
             <div className="contact-faq">
-                <h3 className="contact-subtitle">/ faq</h3>
+                <h3 className="contact-subtitle">{t("contacts.faq")}</h3>
                 <div className="faq-list">
                     {faqs.map((faq) => (
                         <div key={faq.q} className="faq-item">

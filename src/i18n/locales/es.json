@@ -1,0 +1,217 @@
+{
+    "nav": {
+        "logo": "AF",
+        "home": "inicio",
+        "works": "proyectos",
+        "about": "sobre mí",
+        "skills": "habilidades",
+        "contact": "contacto"
+    },
+    "hero": {
+        "greeting": "Hola, soy",
+        "first_name": "Adrián",
+        "last_name": "Fúnez",
+        "roles": [
+            "desarrollador de software",
+            "entusiasta del open source",
+            "desarrollador backend"
+        ],
+        "see_my_work": "ver mi trabajo",
+        "get_in_touch": "contáctame"
+    },
+    "ticker": {
+        "items": [
+            "TypeScript",
+            "✦",
+            "Kotlin",
+            "✦",
+            "C#",
+            "✦",
+            "React",
+            "✦",
+            "Jetpack Compose",
+            "✦",
+            "Design Patterns",
+            "✦",
+            "Clean Architecture",
+            "✦"
+        ]
+    },
+    "about": {
+        "section_label": "sobre mí",
+        "greeting": "Hola, soy Adrián",
+        "bio_1": "Soy desarrollador de software y estudiante de ingeniería electrónica en Guatemala. Empecé a programar casualmente hace 3 años, y se convirtió en mi hobby principal hace aproximadamente un año.",
+        "bio_2": "Me apasiona el open source, la arquitectura limpia y construir sistemas mantenibles. Fuera del código, disfruto la electrónica y el diseño de circuitos — lo que complementa mi mentalidad de ingeniería de software.",
+        "get_in_touch": "contáctame →",
+        "timeline": "/ trayectoria",
+        "timeline_items": [
+            {
+                "year": "2025",
+                "title": "Desarrollador de Software",
+                "subtitle": "Freelance activo y open source",
+                "desc": "Creando aplicaciones full-stack. Enfocado en arquitectura limpia y sistemas mantenibles."
+            },
+            {
+                "year": "2024",
+                "title": "Inmersión en Desarrollo de Software",
+                "subtitle": "Backend, frontend y diseño de sistemas",
+                "desc": "Empecé a tomarme el desarrollo en serio — exploré arquitectura backend, frameworks frontend y principios de diseño de sistemas."
+            },
+            {
+                "year": "2023",
+                "title": "Programación como Hobby",
+                "subtitle": "Primeros proyectos reales",
+                "desc": "Comencé a construir proyectos personales y explorar diferentes áreas del desarrollo de software."
+            },
+            {
+                "year": "2022",
+                "title": "Empecé a Programar",
+                "subtitle": "El principio",
+                "desc": "Escribí mis primeras líneas de código por curiosidad. Empecé con un plugin simple de Minecraft y me enamoré de la resolución de problemas."
+            }
+        ],
+        "fun_facts": "/ datos curiosos",
+        "fun_facts_list": [
+            "Puedo depurar código más rápido después de un buen café",
+            "Estoy convencido de que tabs > spaces (es broma... ¿o no?)",
+            "He pasado más tiempo configurando mi editor que programando",
+            "Mi navegador normalmente tiene 30+ pestañas abiertas — todas 'importantes'",
+            "Una vez arreglé un bug añadiendo un punto y coma. Historia real.",
+            "Creo que el mejor código es el que no tienes que escribir"
+        ],
+        "hobbies": "/ cuando no estoy programando",
+        "hobbies_list": [
+            "Electrónica y diseño de circuitos",
+            "Pasear en bici por la ciudad",
+            "Leer sci-fi y blogs tech",
+            "Jugar videojuegos (cuando no programo)",
+            "Escuchar música de todo tipo",
+            "Cocinar (y comer) recetas nuevas",
+            "Cuidar mis plantas"
+        ]
+    },
+    "projects": {
+        "section_label": "proyectos",
+        "modal": {
+            "close": "×",
+            "features": "características",
+            "view_details": "ver todo",
+            "view_source": "ver código"
+        },
+        "card": {
+            "repository": "Repositorio <~>"
+        }
+    },
+    "works": {
+        "section_label": "proyectos",
+        "search_placeholder": "buscar proyectos...",
+        "all_platforms": "todas las plataformas",
+        "all_languages": "todos los lenguajes",
+        "no_projects": "no se encontraron proyectos...",
+        "load_error": "Error al cargar los proyectos",
+        "category_large": "largo",
+        "category_medium": "mediano",
+        "category_small": "pequeño"
+    },
+    "skills": {
+        "section_label": "habilidades",
+        "languages": "lenguajes",
+        "databases": "bases de datos",
+        "tools": "herramientas",
+        "frameworks": "frameworks",
+        "proficiency": "/ dominio",
+        "currently_learning": "/ aprendiendo ahora",
+        "next_goals": "/ próximas metas",
+        "learning_items": [
+            "TypeScript — dominando el lenguaje y su ecosistema",
+            "Next.js — framework React full-stack",
+            "Rust — programación de sistemas con seguridad y rendimiento",
+            "Flutter — apps móviles multiplataforma con un solo código base"
+        ],
+        "goals": [
+            "Dominar Rust y Go para servicios backend",
+            "Profundizar en infraestructura cloud (AWS/GCP)",
+            "Contribuir a proyectos grandes de open source",
+            "Construir y lanzar un producto SaaS desde cero"
+        ]
+    },
+    "contacts": {
+        "section_label": "contacto",
+        "desc_1": "Estoy interesado en trabajo freelance, contribuciones open source y roles de tiempo completo. Si tienes una oportunidad que crees que podría encajar, ¡no dudes en contactarme!",
+        "desc_2": "Siempre estoy abierto a nuevas oportunidades y colaboraciones. Ya sea que tengas un proyecto en mente, quieras hablar de tecnología o solo quieras saludar, siéntete libre de escribirme.",
+        "available": "disponible para freelance y tiempo completo",
+        "open_label": "Abrir {{label}}",
+        "copy_discord": "Copiar nombre de Discord",
+        "discord_copied": "¡nombre de discord copiado!",
+        "form": "/ enviar mensaje",
+        "success": "¡gracias por escribirme! te responderé pronto.",
+        "name": "nombre",
+        "email": "correo",
+        "subject": "asunto",
+        "message": "mensaje",
+        "send": "enviar mensaje →",
+        "faq": "/ preguntas frecuentes",
+        "faq_items": [
+            {
+                "q": "¿Estás disponible para trabajar freelance?",
+                "a": "¡Sí! Actualmente estoy abierto a proyectos freelance y colaboraciones. Envíame un correo y hablemos."
+            },
+            {
+                "q": "¿Cuál es tu stack tecnológico preferido?",
+                "a": "Soy más productivo con TypeScript, React y Node.js, pero siempre estoy explorando nuevas tecnologías."
+            },
+            {
+                "q": "¿Contribuyes al open source?",
+                "a": "Absolutamente. Creo en devolver a la comunidad y contribuyo regularmente a proyectos que uso."
+            },
+            {
+                "q": "¿Cuál es la mejor forma de contactarte?",
+                "a": "El correo y Discord son normalmente las mejores formas. Respondo bastante rápido en ambas plataformas."
+            }
+        ]
+    },
+    "github_stats": {
+        "title": "/ estadísticas de github",
+        "loading": "cargando estadísticas de github...",
+        "error": "no se pudieron cargar las estadísticas",
+        "stars": "estrellas",
+        "repos": "repos",
+        "followers": "seguidores",
+        "top_languages": "lenguajes principales",
+        "latest_repos": "últimos repos"
+    },
+    "project_detail": {
+        "not_found": "Proyecto no encontrado",
+        "back_to_works": "← volver a proyectos",
+        "back": "← volver",
+        "about": "Acerca de",
+        "screenshots": "Capturas",
+        "technical_challenge": "Desafío Técnico",
+        "features": "Características",
+        "learnings": "Aprendizajes",
+        "technologies": "Tecnologías",
+        "view_source": "ver código",
+        "live_demo": "demo en vivo"
+    },
+    "not_found": {
+        "title": "404",
+        "message": "página no encontrada — el enlace que seguiste no existe",
+        "go_home": "volver al inicio →"
+    },
+    "footer": {
+        "name": "Adrián Fúnez",
+        "email": "adriianh@proton.me",
+        "made_with": "Hecho con",
+        "heart": "♥",
+        "by": "por Adrián Fúnez",
+        "copyright": "© 2026 Adrián Fúnez"
+    },
+    "social": {
+        "copied": "¡copiado!",
+        "copy_discord": "Copiar nombre de Discord"
+    },
+    "section_label": {
+        "hash": "#",
+        "view_all": "Ver todo ~~>"
+    }
+}

@@ -1,24 +1,28 @@
 import { FaGithub, FaDiscord } from "react-icons/fa";
 import { SiFigma } from "react-icons/si";
+import { useTranslation } from "react-i18next";
 import "../../styles/footer.css";
 
 export function Footer() {
+    const { t } = useTranslation();
+
     return (
         <footer className="footer">
             <div className="footer-row">
                 <div className="footer-text">
                     <div className="footer-name">
-                        Adrián Fúnez
+                        {t("footer.name")}
                         <a
                             href="mailto:adriianh@proton.me"
                             className="footer-email"
                         >
-                            adriianh@proton.me
+                            {t("footer.email")}
                         </a>
                     </div>
                     <p>
-                        Made with <span className="heart">♥</span> by Adrián
-                        Fúnez
+                        {t("footer.made_with")}{" "}
+                        <span className="heart">{t("footer.heart")}</span>{" "}
+                        {t("footer.by")}
                     </p>
                 </div>
                 <div className="footer-socials">
@@ -45,7 +49,7 @@ export function Footer() {
                     </a>
                 </div>
             </div>
-            <p className="footer-copy">© 2026 Adrián Fúnez</p>
+            <p className="footer-copy">{t("footer.copyright")}</p>
         </footer>
     );
 }

@@ -1,4 +1,5 @@
 import type { Project } from "../../domain/entities/Project";
+import { useTranslation } from "react-i18next";
 import "../../styles/project-card.css";
 
 interface Props {
@@ -8,6 +9,7 @@ interface Props {
 
 export function ProjectCard({ project, onSelect }: Props) {
     const allTechs = [...project.programmingLanguages, ...project.technologies];
+    const { t } = useTranslation();
 
     return (
         <article className="project-card" onClick={() => onSelect(project)}>
@@ -37,7 +39,7 @@ export function ProjectCard({ project, onSelect }: Props) {
                         className="project-card__btn"
                         onClick={(e) => e.stopPropagation()}
                     >
-                        Repository {"<~>"}
+                        {t("projects.card.repository")}
                     </a>
                 </div>
             </div>

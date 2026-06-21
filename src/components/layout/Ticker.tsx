@@ -1,23 +1,10 @@
+import { useTranslation } from "react-i18next";
 import "../../styles/ticker.css";
 
-const items = [
-    "TypeScript",
-    "✦",
-    "Kotlin",
-    "✦",
-    "C#",
-    "✦",
-    "React",
-    "✦",
-    "Jetpack Compose",
-    "✦",
-    "Design Patterns",
-    "✦",
-    "Clean Architecture",
-    "✦",
-];
-
 function TickerContent() {
+    const { t } = useTranslation();
+    const items = t("ticker.items", { returnObjects: true }) as string[];
+
     return (
         <>
             {items.map((item, i) =>
@@ -40,11 +27,11 @@ export function Ticker() {
         <div className="ticker">
             <div className="ticker-wrapper">
                 <div className="ticker-track">
-                {Array.from({ length: 4 }, (_, i) => (
-                    <span key={i} className="ticker-group">
-                        <TickerContent />
-                    </span>
-                ))}
+                    {Array.from({ length: 4 }, (_, i) => (
+                        <span key={i} className="ticker-group">
+                            <TickerContent />
+                        </span>
+                    ))}
                 </div>
             </div>
         </div>

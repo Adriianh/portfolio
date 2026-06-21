@@ -1,13 +1,15 @@
 import { WaveBackground } from "../ui/WaveBackground";
 import { Link } from "react-router-dom";
 import { useTypingEffect } from "../../hooks/useTypingEffect";
+import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
 import photo from "/assets/photo.webp";
 import "../../styles/hero.css";
 
 export function Hero() {
+    const { t } = useTranslation();
     const role = useTypingEffect(
-        ["software developer", "open source enthusiast", "backend developer"],
+        t("hero.roles", { returnObjects: true }) as string[],
         80,
         150,
     );
@@ -23,17 +25,17 @@ export function Hero() {
         >
             <WaveBackground />
             <div className="hero-content">
-                <p className="hero-greeting">Hello, I'm</p>
+                <p className="hero-greeting">{t("hero.greeting")}</p>
                 <h1>
-                    Adrián <span>Fúnez</span>
+                    {t("hero.first_name")} <span>{t("hero.last_name")}</span>
                 </h1>
                 <p className="hero-role">{role}</p>
                 <div className="hero-actions">
                     <Link to="/works" className="btn btn-primary">
-                        see my work
+                        {t("hero.see_my_work")}
                     </Link>
                     <a href="#contact" className="btn btn-outline">
-                        get in touch
+                        {t("hero.get_in_touch")}
                     </a>
                 </div>
             </div>

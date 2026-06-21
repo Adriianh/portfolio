@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { GetProjects } from "../domain/use-cases/GetProjects";
 import { ProjectRepositoryImpl } from "../data/repositories/ProjectRepositoryImpl";
 import { AllProjectsSpec } from "../domain/specs/ProjectSpecs";
@@ -19,6 +20,8 @@ export function ProjectDetailPage() {
     const [platform, setPlatform] = useState("");
     const [zoomed, setZoomed] = useState(false);
     const [zoomedIn, setZoomedIn] = useState(false);
+
+    const { t } = useTranslation();
 
     useEffect(() => {
         const repo = new ProjectRepositoryImpl(baseUrl);
@@ -86,8 +89,8 @@ export function ProjectDetailPage() {
                 exit={{ opacity: 0, y: -20 }}
                 transition={{ duration: 0.6, ease: "easeOut" }}
             >
-                <p>Project not found</p>
-                <Link to="/works">← back to works</Link>
+                <p>{t("project_detail.not_found")}</p>
+                <Link to="/works">{t("project_detail.back_to_works")}</Link>
             </motion.section>
         );
     }
@@ -118,7 +121,7 @@ export function ProjectDetailPage() {
                 className="btn btn-outline detail-back-btn"
                 onClick={() => navigate(-1)}
             >
-                ← back
+                {t("project_detail.back")}
             </button>
 
             {project.previewUrl && (
@@ -132,14 +135,14 @@ export function ProjectDetailPage() {
 
             {project.longDescription && (
                 <>
-                    <h3>About</h3>
+                    <h3>{t("project_detail.about")}</h3>
                     <p>{project.longDescription}</p>
                 </>
             )}
 
             {currentScreenshots.length > 0 && (
                 <>
-                    <h3>Screenshots</h3>
+                    <h3>{t("project_detail.screenshots")}</h3>
 
                     {availablePlatforms.length > 1 && (
                         <div className="platform-tabs">
@@ -201,10 +204,10 @@ export function ProjectDetailPage() {
                     </div>
                 </>
             )}
-            <h3>Technical Challenge</h3>
+            <h3>{t("project_detail.technical_challenge")}</h3>
             <p>{project.technicalChallenge}</p>
 
-            <h3>Features</h3>
+            <h3>{t("project_detail.features")}</h3>
             <ul>
                 {project.features.map((f, i) => (
                     <li key={i}>{f}</li>
@@ -213,7 +216,7 @@ export function ProjectDetailPage() {
 
             {project.learnings.length > 0 && (
                 <>
-                    <h3>Learnings</h3>
+                    <h3>{t("project_detail.learnings")}</h3>
                     <ul>
                         {project.learnings.map((l, i) => (
                             <li key={i}>{l}</li>
@@ -222,7 +225,7 @@ export function ProjectDetailPage() {
                 </>
             )}
 
-            <h3>Technologies</h3>
+            <h3>{t("project_detail.technologies")}</h3>
             <div className="detail-techs">
                 {allTechs.map((t, i) => (
                     <span key={i} className="detail-tag">
@@ -237,7 +240,7 @@ export function ProjectDetailPage() {
                     target="_blank"
                     className="btn btn-primary"
                 >
-                    view source
+                    {t("project_detail.view_source")}
                 </a>
                 {project.demoUrl && (
                     <a
@@ -245,7 +248,7 @@ export function ProjectDetailPage() {
                         target="_blank"
                         className="btn btn-outline"
                     >
-                        live demo
+                        {t("project_detail.live_demo")}
                     </a>
                 )}
             </div>

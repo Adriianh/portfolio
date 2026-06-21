@@ -1,9 +1,11 @@
 import "../../styles/social-sidebar.css";
 import { FaGithub, FaLinkedin, FaDiscord } from "react-icons/fa";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 
 export function SocialSidebar() {
     const [copied, setCopied] = useState(false);
+    const { t } = useTranslation();
 
     function copyDiscord() {
         if (navigator.clipboard) {
@@ -30,7 +32,11 @@ export function SocialSidebar() {
 
     return (
         <aside className="social-sidebar">
-            {copied && <span className="social-sidebar__toast">copied!</span>}
+            {copied && (
+                <span className="social-sidebar__toast">
+                    {t("social.copied")}
+                </span>
+            )}
             <div className="social-sidebar__icons">
                 <a
                     href="https://github.com/adriianh"
@@ -49,7 +55,7 @@ export function SocialSidebar() {
                 <button
                     className="social-sidebar__icon-btn"
                     onClick={copyDiscord}
-                    title="Copy Discord username"
+                    title={t("social.copy_discord")}
                 >
                     <FaDiscord />
                 </button>

@@ -1,11 +1,14 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useTheme } from "../../hooks/useTheme";
+import { useTranslation } from "react-i18next";
+import { LanguageToggle } from "../ui/LanguageToggle";
 import "../../styles/navbar.css";
 
 export function Navbar() {
     const { theme, toggleTheme } = useTheme();
     const [menuOpen, setMenuOpen] = useState(false);
+    const { t } = useTranslation();
 
     function closeMenu() {
         setMenuOpen(false);
@@ -14,16 +17,27 @@ export function Navbar() {
     return (
         <nav>
             <Link to="/" className="logo">
-                AF
+                {t("nav.logo")}
             </Link>
             <div className={`nav-links ${menuOpen ? "open" : ""}`}>
-                <Link to="/" onClick={closeMenu}>home</Link>
-                <Link to="/works" onClick={closeMenu}>works</Link>
-                <Link to="/about" onClick={closeMenu}>about</Link>
-                <Link to="/skills" onClick={closeMenu}>skills</Link>
-                <Link to="/contact" onClick={closeMenu}>contact</Link>
+                <Link to="/" onClick={closeMenu}>
+                    {t("nav.home")}
+                </Link>
+                <Link to="/works" onClick={closeMenu}>
+                    {t("nav.works")}
+                </Link>
+                <Link to="/about" onClick={closeMenu}>
+                    {t("nav.about")}
+                </Link>
+                <Link to="/skills" onClick={closeMenu}>
+                    {t("nav.skills")}
+                </Link>
+                <Link to="/contact" onClick={closeMenu}>
+                    {t("nav.contact")}
+                </Link>
             </div>
             <div className="nav-actions">
+                <LanguageToggle />
                 <button
                     onClick={toggleTheme}
                     aria-label={`Switch to ${theme === "light" ? "dark" : "light"} mode`}

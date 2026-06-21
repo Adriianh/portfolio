@@ -1,6 +1,7 @@
 import { SectionLabel } from "../components/ui/SectionLabel";
 import { GitHubStats } from "../components/sections/GitHubStats.tsx";
 import { motion } from "framer-motion";
+import { useTranslation } from "react-i18next";
 import "../styles/skills.css";
 
 const skills = {
@@ -19,20 +20,6 @@ const proficiency = [
     { name: "PostgreSQL", level: 80 },
     { name: "React", level: 60 },
     { name: "Docker", level: 70 },
-];
-
-const currentlyLearning = [
-    "TypeScript — mastering the language and ecosystem",
-    "Next.js — full-stack React framework",
-    "Rust — systems programming with safety and performance",
-    "Flutter — building cross-platform mobile apps with a single codebase",
-];
-
-const roadmap = [
-    "Master Rust & Go for backend services",
-    "Deepen cloud infrastructure knowledge (AWS/GCP)",
-    "Contribute to major open source projects",
-    "Build and ship a SaaS product from scratch",
 ];
 
 function DotGrid({ x, y }: { x: number; y: number }) {
@@ -121,6 +108,23 @@ function SkillsDeco() {
 }
 
 export function SkillsPage() {
+    const { t } = useTranslation();
+
+    const categoryLabels: Record<string, string> = {
+        Languages: t("skills.languages"),
+        Databases: t("skills.databases"),
+        Tools: t("skills.tools"),
+        Frameworks: t("skills.frameworks"),
+    };
+
+    const currentlyLearning = t("skills.learning_items", {
+        returnObjects: true,
+    }) as string[];
+
+    const roadmap = t("skills.goals", {
+        returnObjects: true,
+    }) as string[];
+
     return (
         <motion.section
             initial={{ opacity: 0, y: 40 }}
@@ -130,7 +134,7 @@ export function SkillsPage() {
             viewport={{ once: true }}
             id="skills"
         >
-            <SectionLabel id="skills" label="skills" />
+            <SectionLabel id="skills" label={t("skills.section_label")} />
 
             <div className="skills-layout">
                 <div className="skills-deco">
@@ -140,7 +144,9 @@ export function SkillsPage() {
                 <div className="skills-grid">
                     {Object.entries(skills).map(([category, items]) => (
                         <div key={category} className="skills-col">
-                            <h3 className="skills-col__title">{category}</h3>
+                            <h3 className="skills-col__title">
+                                {categoryLabels[category]}
+                            </h3>
                             <div className="skills-col__items">
                                 {items.map((item) => (
                                     <span
@@ -157,7 +163,7 @@ export function SkillsPage() {
             </div>
 
             <div className="skills-proficiency">
-                <h3 className="skills-subtitle">/ proficiency</h3>
+                <h3 className="skills-subtitle">{t("skills.proficiency")}</h3>
                 <div className="proficiency-list">
                     {proficiency.map((skill) => (
                         <div key={skill.name} className="proficiency-row">
@@ -179,7 +185,9 @@ export function SkillsPage() {
             </div>
 
             <div className="skills-learning">
-                <h3 className="skills-subtitle">/ currently learning</h3>
+                <h3 className="skills-subtitle">
+                    {t("skills.currently_learning")}
+                </h3>
                 <div className="learning-grid">
                     {currentlyLearning.map((item) => (
                         <div key={item} className="learning-card">
@@ -191,7 +199,7 @@ export function SkillsPage() {
             </div>
 
             <div className="skills-roadmap">
-                <h3 className="skills-subtitle">/ next goals</h3>
+                <h3 className="skills-subtitle">{t("skills.next_goals")}</h3>
                 <div className="roadmap-list">
                     {roadmap.map((goal, i) => (
                         <div key={i} className="roadmap-item">
