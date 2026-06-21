@@ -23,11 +23,11 @@ export function ProjectModal({ project, onClose }: Props) {
                 </button>
                 <h2>{project.title}</h2>
                 <span className="modal-badge">{project.interfaceType}</span>
-                <p>{project.description}</p>
+                <p>{t(`projects_data.${project.id}.description`)}</p>
 
                 <h4>{t("projects.modal.features")}</h4>
                 <ul>
-                    {project.features.map((f, i) => (
+                    {(t(`projects_data.${project.id}.features`, { returnObjects: true }) as string[]).map((f, i) => (
                         <li key={i}>{f}</li>
                     ))}
                 </ul>

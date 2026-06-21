@@ -29,7 +29,7 @@ export function ProjectCard({ project, onSelect }: Props) {
 
             <div className="project-card__body">
                 <h3 className="project-card__title">{project.title}</h3>
-                <p className="project-card__desc">{project.description}</p>
+                <p className="project-card__desc">{t(`projects_data.${project.id}.description`)}</p>
 
                 <div className="project-card__actions">
                     <a

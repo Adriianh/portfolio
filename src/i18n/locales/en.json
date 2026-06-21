@@ -212,5 +212,86 @@
     "section_label": {
         "hash": "#",
         "view_all": "View all ~~>"
+    },
+    "projects_data": {
+        "farmacontrol": {
+            "description": "A domain-driven pharmacy management...",
+            "features": [
+                "Polymorphic product architecture handling specific domain logic for Medicines (prescriptions/controlled traits), Supplements, Cosmetics, and Supplies.",
+                "Batch-based inventory tracking that automatically drains stock from lots closest to their expiration date.",
+                "Automated alert evaluation engine driven by polymorphic interfaces (IAlertable/IExpirable) for low-stock and near-expiration status checks.",
+                "Comprehensive POS module with custom discount/tax calculations, prescription cross-referencing, and transaction voiding with stock replenishment.",
+                "Role-based access control (RBAC) managing dynamic menu configurations and allowed administrative actions via object-oriented encapsulation."
+            ],
+            "technical_challenge": "Designing an atomic inventory reduction algorithm that correctly sequences lot deductions by expiration date while handling data consistency, precision rounding for multi-item sales, and state rollback upon transaction voiding.",
+            "long_description": "A domain-driven pharmacy management and Point of Sale (POS) system designed to handle complex pharmaceutical operations, batch-tracked inventories, and rule-based user workflows.",
+            "learnings": [
+                "Practiced domain-driven design (DDD) with rich domain models, value objects, and aggregate roots for pharmaceutical business logic.",
+                "Implemented polymorphic product hierarchies (IAlertable/IExpirable interfaces) achieving clean separation of concerns without violating OCP.",
+                "Gained production experience with Avalonia UI and the MVVM pattern for cross-platform desktop applications.",
+                "Designed an atomic inventory reduction algorithm with transactional consistency — deducing from nearest-expiry lots while handling precision rounding and rollback on void."
+            ]
+        },
+        "melo": {
+            "description": "A cross-platform music player...",
+            "features": [
+                "Dual-operational interface providing a rich, keyboard-driven Terminal User Interface (TUI) alongside a lightning-fast CLI for instant playback control.",
+                "Persistent background processing managed via a lightweight daemon optimized for ultra-low CPU and memory utilization.",
+                "Asynchronous media streaming pipeline integration utilizing optimized dependencies via yt-dlp and ffmpeg for audio streaming.",
+                "GraalVM Native Image compilation producing standalone executable binaries with instantaneous startup times."
+            ],
+            "technical_challenge": "Decoupling the interactive keyboard-driven UI state from the asynchronous streaming pipelines of the background daemon, ensuring zero-latency terminal rendering updates and synchronized audio playback states.",
+            "long_description": "A high-performance, lightweight audio player featuring a dual-experience workflow with an interactive TUI, an immediate CLI, and a background processing daemon.",
+            "learnings": [
+                "Explored Kotlin Multiplatform architecture sharing business logic across desktop (TUI), CLI, and daemon modules.",
+                "Designed a dual-interface system (interactive TUI + fast CLI) with a shared backend, learning to decouple presentation from business logic.",
+                "Learned GraalVM Native Image compilation — optimizing for instant startup and minimal binary size while working around reflection limitations.",
+                "Built asynchronous streaming pipelines with Kotlin coroutines and channels, integrating yt-dlp and ffmpeg for real-time audio processing."
+            ]
+        },
+        "portfolio": {
+            "description": "A personal portfolio website...",
+            "features": [
+                "Fully responsive design with mobile-first approach and adaptive layouts.",
+                "Dynamic content loading with lazy loading and code splitting for performance optimization.",
+                "SEO-friendly architecture with server-side rendering and meta tag management.",
+                "Integrated contact form with validation and email notifications."
+            ],
+            "technical_challenge": "Achieving dynamic state reactivity and DOM synchronization manually using pure TypeScript, eliminating rendering flicker by strategically toggling visibility classes instead of reconstructing components.",
+            "long_description": "A zero-framework, highly optimized frontend portfolio built to showcase pure software architecture principles, design patterns, and complete separation of concerns.",
+            "learnings": [
+                "Mastered advanced TypeScript features and patterns for state management.",
+                "Gained deep understanding of DOM manipulation and rendering optimization.",
+                "Learned to implement responsive design principles and accessibility standards."
+            ]
+        },
+        "todo-cli": {
+            "description": "A simple yet powerful command-line tool to manage your tasks.",
+            "features": [
+                "Add, list, complete, and delete tasks from the terminal.",
+                "Persistent storage using local file-based database.",
+                "Clean and intuitive command syntax with help flags."
+            ],
+            "technical_challenge": "Designing a clean CLI ergonomics with intuitive subcommand routing while keeping the codebase minimal and dependency-free.",
+            "long_description": "A lightweight task manager built for the terminal. Focus on simplicity and fast task management without leaving the command line.",
+            "learnings": [
+                "Practiced CLI argument parsing and subcommand routing patterns.",
+                "Reinforced Kotlin idioms for immutable data structures and sealed classes."
+            ]
+        },
+        "currency-exchange-cli": {
+            "description": "A simple yet powerful command-line tool for checking currency exchange rates.",
+            "features": [
+                "Real-time exchange rates for multiple currency pairs.",
+                "Clean formatted output with rate, change, and timestamp.",
+                "Support for base currency conversion and amount calculation."
+            ],
+            "technical_challenge": "Integrating with external exchange rate API while ensuring graceful error handling for network failures and rate limits.",
+            "long_description": "A terminal-based currency converter that fetches live exchange rates. Type a command and get instant conversions without opening a browser.",
+            "learnings": [
+                "Practiced HTTP client usage and JSON parsing in Kotlin.",
+                "Learned to handle API errors and edge cases in CLI contexts."
+            ]
+        }
     }
 }

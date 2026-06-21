@@ -131,12 +131,12 @@ export function ProjectDetailPage() {
             <h1>{project.title}</h1>
             <span className="detail-badge">{project.interfaceType}</span>
 
-            <p>{project.description}</p>
+            <p>{t(`projects_data.${project.id}.description`)}</p>
 
             {project.longDescription && (
                 <>
                     <h3>{t("project_detail.about")}</h3>
-                    <p>{project.longDescription}</p>
+                    <p>{t(`projects_data.${project.id}.long_description`)}</p>
                 </>
             )}
 
@@ -205,20 +205,20 @@ export function ProjectDetailPage() {
                 </>
             )}
             <h3>{t("project_detail.technical_challenge")}</h3>
-            <p>{project.technicalChallenge}</p>
+            <p>{t(`projects_data.${project.id}.technical_challenge`)}</p>
 
             <h3>{t("project_detail.features")}</h3>
             <ul>
-                {project.features.map((f, i) => (
+                {(t(`projects_data.${project.id}.features`, { returnObjects: true }) as string[]).map((f, i) => (
                     <li key={i}>{f}</li>
                 ))}
             </ul>
 
-            {project.learnings.length > 0 && (
+            {(t(`projects_data.${project.id}.learnings`, { returnObjects: true }) as string[]).length > 0 && (
                 <>
                     <h3>{t("project_detail.learnings")}</h3>
                     <ul>
-                        {project.learnings.map((l, i) => (
+                        {(t(`projects_data.${project.id}.learnings`, { returnObjects: true }) as string[]).map((l, i) => (
                             <li key={i}>{l}</li>
                         ))}
                     </ul>

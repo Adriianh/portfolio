@@ -213,5 +213,86 @@
     "section_label": {
         "hash": "#",
         "view_all": "Ver todo ~~>"
+    },
+    "projects_data": {
+        "farmacontrol": {
+            "description": "Un sistema de gestión farmacéutica...",
+            "features": [
+                "Arquitectura polimórfica de productos que maneja lógica de dominio específica para Medicamentos (recetados/controlados), Suplementos, Cosméticos e Insumos.",
+                "Inventario basado en lotes que descuenta automáticamente el stock de los lotes más próximos a vencer.",
+                "Motor de evaluación de alertas automatizadas impulsado por interfaces polimórficas (IAlertable/IExpirable) para verificar stock bajo y proximidad a vencimiento.",
+                "Módulo POS completo con cálculos personalizados de descuentos/impuestos, referencia cruzada de recetas y anulación de transacciones con reposición de inventario.",
+                "Control de acceso basado en roles (RBAC) con configuraciones dinámicas de menú y acciones administrativas mediante encapsulación orientada a objetos."
+            ],
+            "technical_challenge": "Diseñar un algoritmo atómico de reducción de inventario que secuencie correctamente los descuentos de lotes por fecha de vencimiento, manejando consistencia de datos, redondeo de precisión para ventas múltiples y reversión de estado al anular transacciones.",
+            "long_description": "Un sistema de gestión farmacéutica y punto de venta (POS) diseñado para manejar operaciones farmacéuticas complejas, inventarios por lotes y flujos de trabajo basados en reglas.",
+            "learnings": [
+                "Practiqué diseño guiado por dominio (DDD) con modelos de dominio ricos, objetos de valor y raíces agregadas para lógica de negocio farmacéutica.",
+                "Implementé jerarquías polimórficas de productos (interfaces IAlertable/IExpirable) logrando separación limpia de responsabilidades sin violar OCP.",
+                "Obtuve experiencia en producción con Avalonia UI y el patrón MVVM para aplicaciones de escritorio multiplataforma.",
+                "Diseñé un algoritmo atómico de reducción de inventario con consistencia transaccional — descontando de lotes próximos a vencer manejando redondeo de precisión y reversión al anular."
+            ]
+        },
+        "melo": {
+            "description": "Un reproductor de música multiplataforma...",
+            "features": [
+                "Interfaz de doble operación que proporciona una Interfaz de Usuario de Terminal (TUI) rica y manejable con teclado, junto a un CLI ultrarrápido para control de reproducción instantáneo.",
+                "Procesamiento persistente en segundo plano gestionado por un daemon ligero optimizado para uso ultrabajo de CPU y memoria.",
+                "Pipeline de streaming multimedia asíncrono que utiliza dependencias optimizadas mediante yt-dlp y ffmpeg para transmisión de audio.",
+                "Compilación GraalVM Native Image que produce binarios ejecutables independientes con tiempos de inicio instantáneos."
+            ],
+            "technical_challenge": "Desacoplar el estado interactivo de la UI basada en teclado de los pipelines de streaming asíncronos del daemon en segundo plano, asegurando actualizaciones de renderizado de terminal con latencia cero y estados de reproducción de audio sincronizados.",
+            "long_description": "Un reproductor de audio de alto rendimiento y ligero con un flujo de trabajo de doble experiencia: TUI interactivo, CLI inmediato y un daemon de procesamiento en segundo plano.",
+            "learnings": [
+                "Exploré la arquitectura Kotlin Multiplatform compartiendo lógica de negocio entre módulos de escritorio (TUI), CLI y daemon.",
+                "Diseñé un sistema de doble interfaz (TUI interactivo + CLI rápido) con un backend compartido, aprendiendo a desacoplar presentación de lógica de negocio.",
+                "Aprendí la compilación GraalVM Native Image — optimizando para inicio instantáneo y tamaño binario mínimo mientras trabajaba alrededor de limitaciones de reflexión.",
+                "Construí pipelines de streaming asíncrono con corrutinas y canales de Kotlin, integrando yt-dlp y ffmpeg para procesamiento de audio en tiempo real."
+            ]
+        },
+        "portfolio": {
+            "description": "Un sitio web de portafolio personal...",
+            "features": [
+                "Diseño totalmente responsive con enfoque mobile-first y layouts adaptativos.",
+                "Carga dinámica de contenido con lazy loading y división de código para optimización de rendimiento.",
+                "Arquitectura SEO-friendly con gestión de meta tags.",
+                "Formulario de contacto integrado con validación y notificaciones por correo."
+            ],
+            "technical_challenge": "Lograr reactividad de estado dinámica y sincronización del DOM manualmente usando TypeScript puro, eliminando parpadeos de renderizado alternando estratégicamente clases de visibilidad en lugar de reconstruir componentes.",
+            "long_description": "Un portafolio frontend altamente optimizado y sin frameworks, construido para demostrar principios de arquitectura de software, patrones de diseño y separación completa de responsabilidades.",
+            "learnings": [
+                "Dominé características avanzadas de TypeScript y patrones para manejo de estado.",
+                "Obtuve un entendimiento profundo de la manipulación del DOM y optimización de renderizado.",
+                "Aprendí a implementar principios de diseño responsive y estándares de accesibilidad."
+            ]
+        },
+        "todo-cli": {
+            "description": "Una herramienta de línea de comandos simple pero potente para gestionar tus tareas.",
+            "features": [
+                "Añade, lista, completa y elimina tareas desde la terminal.",
+                "Almacenamiento persistente usando base de datos local basada en archivos.",
+                "Sintaxis de comandos limpia e intuitiva con banderas de ayuda."
+            ],
+            "technical_challenge": "Diseñar una ergonomía CLI limpia con enrutamiento intuitivo de subcomandos mientras se mantiene el código mínimo y sin dependencias.",
+            "long_description": "Un gestor de tareas ligero construido para la terminal. Enfocado en simplicidad y gestión rápida de tareas sin salir de la línea de comandos.",
+            "learnings": [
+                "Practiqué el análisis de argumentos CLI y patrones de enrutamiento de subcomandos.",
+                "Reforcé los modismos de Kotlin para estructuras de datos inmutables y clases selladas."
+            ]
+        },
+        "currency-exchange-cli": {
+            "description": "Una herramienta de línea de comandos simple pero potente para consultar tasas de cambio de divisas.",
+            "features": [
+                "Tipos de cambio en tiempo real para múltiples pares de divisas.",
+                "Salida formateada limpia con tasa, cambio y marca de tiempo.",
+                "Soporte para conversión de divisa base y cálculo de cantidades."
+            ],
+            "technical_challenge": "Integrar con una API externa de tipos de cambio mientras se asegura un manejo elegante de errores para fallos de red y límites de tasa.",
+            "long_description": "Un conversor de divisas basado en terminal que obtiene tipos de cambio en vivo. Escribe un comando y obtén conversiones instantáneas sin abrir un navegador.",
+            "learnings": [
+                "Practiqué el uso de cliente HTTP y análisis JSON en Kotlin.",
+                "Aprendí a manejar errores de API y casos extremos en contextos CLI."
+            ]
+        }
     }
 }
