@@ -1,6 +1,6 @@
 import { SectionLabel } from "../ui/SectionLabel";
 import { motion } from "framer-motion";
-import photo from "/assets/photo.png";
+import photo from "/assets/photo.webp";
 import "../../styles/about.css";
 
 function DotGrid({

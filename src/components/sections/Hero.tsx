@@ -2,7 +2,7 @@ import { WaveBackground } from "../ui/WaveBackground";
 import { Link } from "react-router-dom";
 import { useTypingEffect } from "../../hooks/useTypingEffect";
 import { motion } from "framer-motion";
-import photo from "/assets/photo.png";
+import photo from "/assets/photo.webp";
 import "../../styles/hero.css";
 
 export function Hero() {

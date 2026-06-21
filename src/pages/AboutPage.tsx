@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { SectionLabel } from "../components/ui/SectionLabel";
 import { motion } from "framer-motion";
-import photo from "/assets/photo.png";
+import photo from "/assets/photo.webp";
 import "../styles/about.css";
 
 const timeline = [
