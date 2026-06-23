@@ -38,6 +38,7 @@
         ]
     },
     "about": {
+        "section_label": "about",
         "greeting": "Hello, I'm Adrián",
         "bio_1": "I'm a software developer and electronic engineering student based in Guatemala. I started programming casually 3 years ago, and it became my main hobby about a year ago.",
         "bio_2": "I'm passionate about open source, clean architecture, and building maintainable systems. Outside of code, I enjoy electronics and circuit design — which pairs nicely with my software engineering mindset.",

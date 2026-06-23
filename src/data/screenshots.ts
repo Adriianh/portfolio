@@ -19,7 +19,9 @@ export const screenshotsMap: Record<string, Record<string, string[]>> = {
         default: Object.values(farmacontrol),
     },
     melo: {
-        tui: Object.values(melo).filter((url) => url.includes("/tui/")),
+        tui: Object.entries(melo)
+            .filter(([key]) => key.includes("/tui/"))
+            .map(([, url]) => url),
         mobile: [],
         desktop: [],
     },
